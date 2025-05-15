@@ -1,15 +1,18 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Dark text color for readability */
 }
 
 h1 {
     text-align: center;
     margin-top: 30px;
-    color: #444;
+    color: #2c3e50; /* Dark blue-gray color */
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 .product-list {
@@ -17,21 +20,38 @@ h1 {
     padding: 0;
     max-width: 600px;
     margin: 20px auto;
-    background: #fff;
+    background: #ffffff; /* White background for contrast */
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a card effect */
 }
 
 .product-item {
     padding: 15px;
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .product-item:last-child {
     border-bottom: none;
 }
 
+.product-item:hover {
+    background-color: #f9f9f9; /* Light gray hover effect */
+}
+
 .product-item strong {
+    color: #007BFF; /* Bright blue for emphasis */
+    font-weight: bold;
+}
+
+a {
     color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline;
 }
