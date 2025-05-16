@@ -22,5 +22,12 @@ $page = $_GET['page'] ?? 'home';
             <li><a href="?page=contact">Contact</a></li>
         </ul>
     </nav>
+
+<footer>
+    <p>&copy; 2025 GameShop. All rights reserved.</p>
+    <p><a href="privacy.php">Privacy Policy</a></p>
+    <p><a href="terms.php">Terms of Service</a></p>
+    <p><a href="contact.php">Contact Us</a></p>
+</footer>
 </body>
 </html>

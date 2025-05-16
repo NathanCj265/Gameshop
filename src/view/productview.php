@@ -30,5 +30,12 @@
         <li>product 5 - $59.99</li>
         <li>product 6 - $69.99</li>
     </ul>
+
+<footer>
+    <p>&copy; 2025 GameShop. All rights reserved.</p>
+    <p><a href="privacy.php">Privacy Policy</a></p>
+    <p><a href="terms.php">Terms of Service</a></p>
+    <p><a href="contact.php">Contact Us</a></p>
+</footer>
 </body>
 </html>

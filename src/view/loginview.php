@@ -27,5 +27,11 @@
 
     <p>Don't have an account? <a href="register.php">Register here</a>.</p>
 
+<footer>
+    <p>&copy; 2025 GameShop. All rights reserved.</p>
+    <p><a href="privacy.php">Privacy Policy</a></p>
+    <p><a href="terms.php">Terms of Service</a></p>
+    <p><a href="contact.php">Contact Us</a></p>
+</footer>
 </body>
 </html>

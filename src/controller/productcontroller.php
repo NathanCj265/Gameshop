@@ -6,7 +6,7 @@ class ProductController {
     public static function execute() {
         ProductModel::initializeDatabase();
         $allProducts = ProductModel::getAllProducts();
-        ProductView::render($allProducts);
+        productview::render($allProducts);
     }
 }
 
