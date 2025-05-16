@@ -12,10 +12,11 @@ $page = $_GET['page'] ?? 'home';
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to the Game Shop!</h1>
+    <h1>Gameshop</h1>
     <nav>
         <ul>
             <li><a href="?page=home">Home</a></li>
+            <li><a href="?page=products">Products</a></li>
             <li><a href="?page=games">Games</a></li>
             <li><a href="?page=about">About Us</a></li>
             <li><a href="?page=contact">Contact</a></li>
