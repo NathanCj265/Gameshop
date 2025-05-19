@@ -12,12 +12,15 @@ class HomeView {
                 <li><a href="?page=games">Games</a></li>
                 <li><a href="?page=about">About Us</a></li>
                 <li><a href="?page=contact">Contact</a></li>
+                <li><a href="?page=signup">Sign Up</a></li>
+                <li><a href="?page=login">Login</a></li>
             </ul>
         </nav>
-        <img src="images/logo.png" alt="GameShop Logo" class="logo">
+        <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
         <p>Welcome to GameShop, your one-stop shop for all your gaming needs!</p>
         <p>Explore our wide range of products and games.</p>
         <h2>Featured Products</h2>
+        <p>Check out our latest and greatest products!</p>
         <?php
         if ($featuredProducts == null || count($featuredProducts) === 0) {
             echo "<h3>No featured products found!</h3>";

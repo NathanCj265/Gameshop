@@ -1,7 +1,6 @@
 <?php
 
-    
-class LoginView {
+class signupview{
     public static function render($error = null) {
         ?>
         <!DOCTYPE html>
@@ -14,22 +13,22 @@ class LoginView {
         </head>
         <body>
             <h1>Welcome to GameShop!</h1>
-            <p>Please log in to access your account.</p>
+            <p>Please sign up to create an account.</p>
             <?php
             if ($error) {
                 echo "<p style='color:red;'>$error</p>";
             }
             ?>
-            <form action="login.php" method="post">
+            <form action="signup.php" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
                 
-                <button type="submit">Login</button>
+                <button type="submit">Sign Up</button>
             </form>
-            <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+            <p>Already have an account? <a href="login.php">Login here</a>.</p>
             <footer>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
                 <p><a href="privacy.php">Privacy Policy</a></p>
@@ -39,5 +38,11 @@ class LoginView {
         </body>
         </html>
         <?php
-    }
+    }   
+
+
+
+
+
+
 }
