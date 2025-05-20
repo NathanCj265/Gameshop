@@ -1,5 +1,6 @@
 <?php
 
+
 class GameView {
     public static function render($games) {
         ?>
@@ -8,11 +9,10 @@ class GameView {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Games</title>
+            <title>Games | GameShop</title>
             <link rel="stylesheet" href="style.css">
         </head>
         <body>
-            <h1>Games</h1>
             <nav>
                 <ul>
                     <li><a href="?page=home">Home</a></li>
@@ -20,27 +20,29 @@ class GameView {
                     <li><a href="?page=games">Games</a></li>
                     <li><a href="?page=about">About Us</a></li>
                     <li><a href="?page=contact">Contact</a></li>
+                    <li><a href="?page=signup">Sign Up</a></li>
+                    <li><a href="?page=login">Login</a></li>
                 </ul>
             </nav>
-
+            <h1>Games</h1>
             <h2>Available Games</h2>
+            <div class="product-list">
             <?php
             if ($games == null || count($games) === 0) {
                 echo "<h3>No games found!</h3>";
             } else {
-                echo "<ul>";
                 foreach ($games as $game) {
-                    echo "<li>" . htmlspecialchars($game->name) . " - $" . number_format($game->price, 2) . "</li>";
+                    echo '<div class="product-item">';
+                    echo '<strong>' . htmlspecialchars($game->name) . '</strong><br>';
+                    echo 'Price: $' . number_format($game->price, 2) . '<br>';
+                    echo htmlspecialchars($game->description ?? '');
+                    echo '</div>';
                 }
-                echo "</ul>";
             }
             ?>
-
+            </div>
             <footer>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
-                <p><a href="privacy.php">Privacy Policy</a></p>
-                <p><a href="terms.php">Terms of Service</a></p>
-                <p><a href="contact.php">Contact Us</a></p>
             </footer>
         </body>
         </html>

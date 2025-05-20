@@ -1,39 +1,57 @@
 <?php
-
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 class HomeView {
-    public static function render($featuredProducts) {
+    public static function render($featuredProducts = []) {
         ?>
-        <h1>Welcome to GameShop</h1>
-        <nav>
-            <ul>
-                <li><a href="?page=home">Home</a></li>
-                <li><a href="?page=products">Products</a></li>
-                <li><a href="?page=games">Games</a></li>
-                <li><a href="?page=about">About Us</a></li>
-                <li><a href="?page=contact">Contact</a></li>
-                <li><a href="?page=signup">Sign Up</a></li>
-                <li><a href="?page=login">Login</a></li>
-            </ul>
-        </nav>
-        <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
-        <p>Welcome to GameShop, your one-stop shop for all your gaming needs!</p>
-        <p>Explore our wide range of products and games.</p>
-        <h2>Featured Products</h2>
-        <p>Check out our latest and greatest products!</p>
-        <?php
-        if ($featuredProducts == null || count($featuredProducts) === 0) {
-            echo "<h3>No featured products found!</h3>";
-        } else {
-            foreach ($featuredProducts as $product) {
-                ?>
-                <div class="product">
-                    <h3><?php echo htmlspecialchars($product->name); ?></h3>
-                    <p>Price: $<?php echo number_format($product->price, 2); ?></p>
-                    <p><?php echo htmlspecialchars($product->description); ?></p>
-                </div>
-                <?php
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Home | GameShop</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        <body>
+            <nav>
+                <ul>
+                    <li><a href="?page=home">Home</a></li>
+                    <li><a href="?page=products">Products</a></li>
+                    <li><a href="?page=games">Games</a></li>
+                    <li><a href="?page=about">About Us</a></li>
+                    <li><a href="?page=contact">Contact</a></li>
+                    <li><a href="?page=signup">Sign Up</a></li>
+                    <li><a href="?page=login">Login</a></li>
+                </ul>
+            </nav>
+            <h1>Welcome to GameShop</h1>
+            <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
+            <p>Welcome to GameShop, your one-stop shop for all your gaming needs!</p>
+            <p>Explore our wide range of products and games.</p>
+            <h2>Featured Products</h2>
+            <div class="product-list">
+            <?php
+            if ($featuredProducts == null || count($featuredProducts) === 0) {
+                echo "<h3>No featured products found!</h3>";
+            } else {
+                foreach ($featuredProducts as $product) {
+                    echo '<div class="product-item">';
+                    echo '<strong>' . htmlspecialchars($product->name) . '</strong><br>';
+                    echo 'Price: $' . number_format($product->price, 2) . '<br>';
+                    echo htmlspecialchars($product->description ?? '');
+                    echo '</div>';
+                }
             }
-        }
+            ?>
+            </div>
+            <footer>
+                <p>&copy; 2025 GameShop. All rights reserved.</p>
+            </footer>
+        </body>
+        </html>
+        <?php
     }
 }
+
+// For testing, call with an empty array
+HomeView::render([]);
