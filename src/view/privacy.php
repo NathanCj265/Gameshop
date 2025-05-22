@@ -1,14 +1,14 @@
 <?php
 
-class ProductView {
-    public static function render($products) {
+class PrivacyView {
+    public static function render() {
         ?>
         <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Products | GameShop</title>
+            <title>Privacy Policy | GameShop</title>
             <link rel="stylesheet" href="style.css">
         </head>
         <body>
@@ -30,24 +30,9 @@ class ProductView {
             <div class="header-image">
                 <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
             </div>
-            <main class="content products-content">
-                <h1>Products</h1>
-                <h2>Available Products</h2>
-                <div class="product-list">
-                <?php
-                if ($products == null || count($products) === 0) {
-                    echo "<h3>No products found!</h3>";
-                } else {
-                    foreach ($products as $product) {
-                        echo '<div class="product-item">';
-                        echo '<strong>' . htmlspecialchars($product->name) . '</strong><br>';
-                        echo 'Price: $' . number_format($product->price, 2) . '<br>';
-                        echo htmlspecialchars($product->description ?? '');
-                        echo '</div>';
-                    }
-                }
-                ?>
-                </div>
+            <main class="content privacy-content">
+                <h1>Privacy Policy</h1>
+                <p>Your privacy is important to us. This policy outlines how we handle your personal information.</p>
             </main>
             <footer>
                 <div class="footer-links">
@@ -62,4 +47,4 @@ class ProductView {
     }
 }
 
-ProductView::render([]);
+PrivacyView::render();
