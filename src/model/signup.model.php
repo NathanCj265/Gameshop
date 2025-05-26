@@ -2,7 +2,7 @@
 require_once __DIR__ . '/dbconnect.php';
 require_once __DIR__ . '/orminterface.php';
 
-class LoginModel implements ORMInterface {
+class SignupModel implements ORMInterface {
     private $id;
     private $username;
     private $password_hash;
@@ -46,7 +46,7 @@ class LoginModel implements ORMInterface {
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         if ($row) {
-            return new LoginModel($row['username'], $row['password_hash'], $row['id']);
+            return new SignupModel($row['username'], $row['password_hash'], $row['id']);
         }
         return null;
     }
@@ -56,20 +56,8 @@ class LoginModel implements ORMInterface {
         $stmt = $pdo->query("SELECT * FROM users");
         $users = [];
         while ($row = $stmt->fetch()) {
-            $users[] = new LoginModel($row['username'], $row['password_hash'], $row['id']);
+            $users[] = new SignupModel($row['username'], $row['password_hash'], $row['id']);
         }
         return $users;
-    }
-
-    // Extra: authentication method
-    public static function authenticate($username, $password) {
-        include __DIR__ . '/dbconnect.php';
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username=?");
-        $stmt->execute([$username]);
-        $user = $stmt->fetch();
-        if ($user && password_verify($password, $user['password_hash'])) {
-            return new LoginModel($user['username'], $user['password_hash'], $user['id']);
-        }
-        return null;
     }
 }

@@ -1,56 +1,65 @@
 <?php
 
-include_once __DIR__ . "/dbConnect.php";
+require_once __DIR__ . '/dbconnect.php';
+require_once __DIR__ . '/orminterface.php';
 
-class GameModel {
+class GameModel implements ORMInterface {
     private $id;
-    public $name;
-    public $price;
-    public $description;
+    private $title;
+    private $genre;
+    private $platform;
+    private static $pdo;
 
-    function __construct() {
-        $this->name = "";
-        $this->price = 0.00;
-        $this->description = "";
-        $this->id = null;
+    public function __construct($title, $genre, $platform, $id = null) {
+        $this->title = $title;
+        $this->genre = $genre;
+        $this->platform = $platform;
+        $this->id = $id;
+        if (!self::$pdo) {
+            include __DIR__ . '/dbconnect.php';
+            self::$pdo = $pdo;
+        }
     }
 
-    
-    public static function initializeDatabase() {
-        global $pdo;
-        $pdo->prepare(
-            "CREATE TABLE IF NOT EXISTS games (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                price DECIMAL(10,2) NOT NULL,
-                description TEXT
-            );"
-        )->execute();
+    public function save() {
+        if ($this->id) {
+            $stmt = self::$pdo->prepare("UPDATE games SET title=?, genre=?, platform=? WHERE id=?");
+            $stmt->execute([$this->title, $this->genre, $this->platform, $this->id]);
+        } else {
+            $stmt = self::$pdo->prepare("INSERT INTO games (title, genre, platform) VALUES (?, ?, ?)");
+            $stmt->execute([$this->title, $this->genre, $this->platform]);
+            $this->id = self::$pdo->lastInsertId();
+        }
+    }
+
+    public function delete() {
+        if ($this->id) {
+            $stmt = self::$pdo->prepare("DELETE FROM games WHERE id=?");
+            $stmt->execute([$this->id]);
+        }
     }
 
     public function getID() {
         return $this->id;
     }
 
-    public function setID($id) {
-        $this->id = $id;
+    public static function findByID($id) {
+        include __DIR__ . '/dbconnect.php';
+        $stmt = $pdo->prepare("SELECT * FROM games WHERE id=?");
+        $stmt->execute([$id]);
+        $row = $stmt->fetch();
+        if ($row) {
+            return new GameModel($row['title'], $row['genre'], $row['platform'], $row['id']);
+        }
+        return null;
     }
- 
-    public static function getAllGames() {
-   
-        global $pdo;
-        $stmt = $pdo->prepare("SELECT * FROM games ORDER BY name ASC");
-        $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    public static function findAll() {
+        include __DIR__ . '/dbconnect.php';
+        $stmt = $pdo->query("SELECT * FROM games");
         $games = [];
-        foreach ($data as $row) {
-            $game = new GameModel();
-            $game->setID($row['id']);
-            $game->name = $row['name'];
-            $game->price = $row['price'];
-            $game->description = $row['description'];
-            $games[] = $game;
+        while ($row = $stmt->fetch()) {
+            $games[] = new GameModel($row['title'], $row['genre'], $row['platform'], $row['id']);
         }
         return $games;
     }
