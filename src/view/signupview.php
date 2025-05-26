@@ -38,7 +38,7 @@ class SignupView{
                     echo "<p style='color:red;'>$error</p>";
                 }
                 ?>
-                <form action="signup.php" method="post">
+                <form action="../controller/signupcontroller.php" method="post">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                     
