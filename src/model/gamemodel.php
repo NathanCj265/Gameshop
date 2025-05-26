@@ -26,7 +26,7 @@ class GameModel implements ORMInterface {
             $stmt = self::$pdo->prepare("UPDATE games SET title=?, genre=?, platform=? WHERE id=?");
             $stmt->execute([$this->title, $this->genre, $this->platform, $this->id]);
         } else {
-            $stmt = self::$pdo->prepare("INSERT INTO games (title, genre, platform) VALUES (?, ?, ?)");
+            $stmt = self::$pdo->prepare("INSERT INTO game (title, genre, platform) VALUES (?, ?, ?)");
             $stmt->execute([$this->title, $this->genre, $this->platform]);
             $this->id = self::$pdo->lastInsertId();
         }

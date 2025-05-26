@@ -1,36 +1,41 @@
 <?php
-require_once 'ORMinterface.php';
+// filepath: c:\xampp\htdocs\Gameshop\src\model\loginmodel.php
 
-class LoginModel implements ORMinterface {
+require_once __DIR__ . '/dbconnect.php';
+require_once __DIR__ . '/orminterface.php';
+
+class LoginModel implements ORMInterface {
     private $id;
     private $username;
-    private $email;
-    private $passwordHash;
+    private $password_hash;
+    private static $pdo;
 
-    public function __construct($username, $email, $passwordHash, $id = null) {
+    public function __construct($username, $password_hash, $id = null) {
         $this->username = $username;
-        $this->email = $email;
-        $this->passwordHash = $passwordHash;
+        $this->password_hash = $password_hash;
         $this->id = $id;
+        if (!self::$pdo) {
+            include __DIR__ . '/dbconnect.php';
+            self::$pdo = $pdo;
+        }
     }
 
     public function save() {
-        $pdo = self::getPDO();
         if ($this->id) {
-            $stmt = $pdo->prepare("UPDATE users SET username=?, email=?, password=? WHERE id=?");
-            $stmt->execute([$this->username, $this->email, $this->passwordHash, $this->id]);
+            $stmt = self::$pdo->prepare("UPDATE users SET username=?, password_hash=? WHERE id=?");
+            $stmt->execute([$this->username, $this->password_hash, $this->id]);
         } else {
-            $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            $stmt->execute([$this->username, $this->email, $this->passwordHash]);
-            $this->id = $pdo->lastInsertId();
+            $stmt = self::$pdo->prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)");
+            $stmt->execute([$this->username, $this->password_hash]);
+            $this->id = self::$pdo->lastInsertId();
         }
     }
 
     public function delete() {
-        if (!$this->id) return;
-        $pdo = self::getPDO();
-        $stmt = $pdo->prepare("DELETE FROM users WHERE id=?");
-        $stmt->execute([$this->id]);
+        if ($this->id) {
+            $stmt = self::$pdo->prepare("DELETE FROM users WHERE id=?");
+            $stmt->execute([$this->id]);
+        }
     }
 
     public function getID() {
@@ -38,43 +43,35 @@ class LoginModel implements ORMinterface {
     }
 
     public static function findByID($id) {
-        $pdo = self::getPDO();
+        include __DIR__ . '/dbconnect.php';
         $stmt = $pdo->prepare("SELECT * FROM users WHERE id=?");
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         if ($row) {
-            return new self($row['username'], $row['email'], $row['password'], $row['id']);
+            return new LoginModel($row['username'], $row['password_hash'], $row['id']);
         }
         return null;
     }
 
     public static function findAll() {
-        $pdo = self::getPDO();
+        include __DIR__ . '/dbconnect.php';
         $stmt = $pdo->query("SELECT * FROM users");
         $users = [];
         while ($row = $stmt->fetch()) {
-            $users[] = new self($row['username'], $row['email'], $row['password'], $row['id']);
+            $users[] = new LoginModel($row['username'], $row['password_hash'], $row['id']);
         }
         return $users;
     }
 
-    public static function findByUsername($username) {
-        $pdo = self::getPDO();
+    // This is the important method for your login!
+    public static function authenticate($username, $password) {
+        include __DIR__ . '/dbconnect.php';
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username=?");
         $stmt->execute([$username]);
-        $row = $stmt->fetch();
-        if ($row) {
-            return new self($row['username'], $row['email'], $row['password'], $row['id']);
+        $user = $stmt->fetch();
+        if ($user && password_verify($password, $user['password_hash'])) {
+            return new LoginModel($user['username'], $user['password_hash'], $user['id']);
         }
         return null;
-    }
-
-    public function verifyPassword($password) {
-        return password_verify($password, $this->passwordHash);
-    }
-
-    private static function getPDO() {
-        // Adjust DSN, username, password as needed
-        return new PDO('mysql:host=localhost;dbname=gameshop;charset=utf8', 'root', '');
     }
 }

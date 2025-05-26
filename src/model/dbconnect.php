@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db   = 'game';
+$db   = 'game'; 
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
