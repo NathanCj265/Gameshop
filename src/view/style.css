@@ -190,6 +190,25 @@ form button:hover, .btn:hover {
     color: #181c29;
 }
 
+/* Style for the extra form links under buttons */
+.form-extra-link {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 1.05em;
+    color: #e0e6f7;
+}
+
+.form-extra-link a {
+    color: #3be8b0;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.form-extra-link a:hover {
+    color: #eebf3f;
+}
+
 /* Alerts & Messages */
 .alert, .error, .success {
     max-width: 420px;
@@ -268,4 +287,67 @@ a:hover {
 .logo:hover {
     box-shadow: 0 4px 24px #eebf3f99;
     border: 2.5px solid #3be8b0;
+}
+
+/* About Page Styles */
+.about-content {
+    background: rgba(35, 41, 70, 0.95);
+    border-radius: 18px;
+    box-shadow: 0 6px 24px #000a, 0 1.5px 0 #eebf3f;
+    padding: 36px 32px 32px 32px;
+    max-width: 700px;
+    margin: 40px auto 40px auto;
+    color: #e0e6f7;
+    font-size: 1.12em;
+    line-height: 1.7;
+}
+
+.about-content h1 {
+    color: #eebf3f;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 18px;
+    text-align: center;
+    letter-spacing: 0.04em;
+}
+
+.about-content p {
+    margin-bottom: 18px;
+    font-size: 1.08em;
+}
+
+.about-content ul {
+    background: #232946;
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 12px #0004;
+    border-left: 4px solid #eebf3f;
+}
+
+.about-content ul li {
+    margin-bottom: 12px;
+    font-size: 1.05em;
+    color: #3be8b0;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    padding-left: 8px;
+    position: relative;
+}
+
+.about-content ul li::before {
+    content: "🎮";
+    margin-right: 10px;
+    color: #eebf3f;
+    font-size: 1.1em;
+}
+
+.about-content strong {
+    color: #eebf3f;
+}
+
+@media (max-width: 800px) {
+    .about-content {
+        padding: 18px 8px;
+        max-width: 98vw;
+    }
 }

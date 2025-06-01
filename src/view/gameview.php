@@ -33,16 +33,21 @@ class GameView {
             <main class="content games-content">
                 <h1>Games</h1>
                 <h2>Available Games</h2>
-                <div class="product-list">
+                <div class="game-list">
                 <?php
                 if ($games == null || count($games) === 0) {
                     echo "<h3>No games found!</h3>";
                 } else {
                     foreach ($games as $game) {
-                        echo '<div class="product-item">';
-                        echo '<strong>' . htmlspecialchars($game->name) . '</strong><br>';
-                        echo 'Price: $' . number_format($game->price, 2) . '<br>';
-                        echo htmlspecialchars($game->description ?? '');
+                        echo '<div class="game-card">';
+                        // Placeholder image, replace src with your actual image path later
+                        echo '<img src="images/game-placeholder.png" alt="Game Image" class="game-img">';
+                        echo '<div class="game-title">' . htmlspecialchars($game->title) . '</div>';
+                        echo '<div class="game-meta">Platform: ' . htmlspecialchars($game->platform) . '</div>';
+                        echo '<div class="game-meta">Genre: ' . htmlspecialchars($game->genre) . '</div>';
+                        // Placeholder for price and description
+                        echo '<div class="game-price">Price: $59.99</div>';
+                        echo '<div class="game-description">Game description goes here.</div>';
                         echo '</div>';
                     }
                 }
@@ -62,4 +67,4 @@ class GameView {
     }
 }
 
-GameView::render([]);
+GameView::render($games ?? []);

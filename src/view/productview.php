@@ -39,10 +39,13 @@ class ProductView {
                     echo "<h3>No products found!</h3>";
                 } else {
                     foreach ($products as $product) {
-                        echo '<div class="product-item">';
-                        echo '<strong>' . htmlspecialchars($product->name) . '</strong><br>';
-                        echo 'Price: $' . number_format($product->price, 2) . '<br>';
-                        echo htmlspecialchars($product->description ?? '');
+                        echo '<div class="product-card">';
+                        // Placeholder image, replace src with your actual image path later
+                        echo '<img src="images/product-placeholder.png" alt="Product Image" class="product-img">';
+                        echo '<div class="product-title">' . htmlspecialchars($product->name) . '</div>';
+                        echo '<div class="product-price">Price: $' . number_format($product->price, 2) . '</div>';
+                        echo '<div class="product-meta">Stock: ' . htmlspecialchars($product->stock) . '</div>';
+                        echo '<div class="product-description">' . htmlspecialchars($product->description ?? 'No description.') . '</div>';
                         echo '</div>';
                     }
                 }
@@ -62,4 +65,4 @@ class ProductView {
     }
 }
 
-ProductView::render([]);
+ProductView::render($products ?? []);

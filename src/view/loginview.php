@@ -48,7 +48,7 @@ class LoginView {
                     
                     <button type="submit">Login</button>
                 </form>
-                <p>Don't have an account? <a href="signupview.php">Register here</a>.</p>
+                <p class="form-extra-link">Don't have an account? <a href="signupview.php">Register here</a>.</p>
             </main>
             <footer>
                 <div class="footer-links">
