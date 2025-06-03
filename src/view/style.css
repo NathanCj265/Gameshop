@@ -5,12 +5,24 @@
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #181c29 0%, #232946 100%);
     color: #e0e6f7;
     min-height: 100vh;
     letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+}
+
+main.content {
+    flex: 1 0 auto;
 }
 
 /* Import a gamer font */
@@ -232,15 +244,14 @@ form button:hover, .btn:hover {
 
 /* Footer */
 footer {
-    margin-top: 48px;
-    padding: 20px 0;
+    flex-shrink: 0;
+    margin-top: 32px;
     background: #232946;
-    color: #eebf3f;
+    color: #e0e6f7;
     text-align: center;
-    font-size: 1.1em;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 -2px 12px #000a;
-    letter-spacing: 0.04em;
+    padding: 18px 0 10px 0;
+    border-top: 3px solid #eebf3f;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.18);
 }
 
 /* Links */
