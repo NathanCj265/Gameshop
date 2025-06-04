@@ -2,7 +2,7 @@
 
 class GameView {
     public static function render($games = null) {
-        // Hardcoded games with images
+      
         $games = [
             [
                 'title' => "Marvel’s Spider-Man 2",

@@ -1,7 +1,45 @@
 <?php
 
 class ProductView {
-    public static function render($products) {
+    public static function render($products = null) {
+       
+        $products = [
+            [
+                'name' => "DualSense Wireless Controller",
+                'price' => 69.99,
+                'stock' => 25,
+                'description' => "The latest PlayStation 5 controller with haptic feedback.",
+                'image' => "images/products/dualsense.jpg"
+            ],
+            [
+                'name' => "Xbox Series X Console",
+                'price' => 499.99,
+                'stock' => 10,
+                'description' => "The fastest, most powerful Xbox ever.",
+                'image' => "images/products/xboxseriesx.jpg"
+            ],
+            [
+                'name' => "Nintendo Switch OLED",
+                'price' => 349.99,
+                'stock' => 15,
+                'description' => "Nintendo Switch with a vibrant OLED display.",
+                'image' => "images/products/switcholed.jpg"
+            ],
+            [
+                'name' => "Steam Gift Card $50",
+                'price' => 50.00,
+                'stock' => 100,
+                'description' => "Add funds to your Steam Wallet to buy games and more.",
+                'image' => "images/products/steamgiftcard.jpg"
+            ],
+            [
+                'name' => "PlayStation Plus 12 Month Membership",
+                'price' => 59.99,
+                'stock' => 40,
+                'description' => "Access online multiplayer and free monthly games on PS5/PS4.",
+                'image' => "images/products/psplus.jpg"
+            ],
+        ];
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -35,19 +73,14 @@ class ProductView {
                 <h2>Available Products</h2>
                 <div class="product-list">
                 <?php
-                if ($products == null || count($products) === 0) {
-                    echo "<h3>No products found!</h3>";
-                } else {
-                    foreach ($products as $product) {
-                        echo '<div class="product-card">';
-                        // Placeholder image, replace src with your actual image path later
-                        echo '<img src="images/product-placeholder.png" alt="Product Image" class="product-img">';
-                        echo '<div class="product-title">' . htmlspecialchars($product->name) . '</div>';
-                        echo '<div class="product-price">Price: $' . number_format($product->price, 2) . '</div>';
-                        echo '<div class="product-meta">Stock: ' . htmlspecialchars($product->stock) . '</div>';
-                        echo '<div class="product-description">' . htmlspecialchars($product->description ?? 'No description.') . '</div>';
-                        echo '</div>';
-                    }
+                foreach ($products as $product) {
+                    echo '<div class="product-card">';
+                    echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-img">';
+                    echo '<div class="product-title">' . htmlspecialchars($product['name']) . '</div>';
+                    echo '<div class="product-price">Price: $' . number_format($product['price'], 2) . '</div>';
+                    echo '<div class="product-meta">Stock: ' . htmlspecialchars($product['stock']) . '</div>';
+                    echo '<div class="product-description">' . htmlspecialchars($product['description'] ?? 'No description.') . '</div>';
+                    echo '</div>';
                 }
                 ?>
                 </div>
@@ -65,4 +98,4 @@ class ProductView {
     }
 }
 
-ProductView::render($products ?? []);
+ProductView::render();
