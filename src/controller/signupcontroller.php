@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../model/signup.model.php';
+require_once __DIR__ . '/../model/usermodel.php';
 require_once __DIR__ . '/../view/signupview.php';
 
 class SignupController {
@@ -9,10 +9,15 @@ class SignupController {
             $password = $_POST['password'] ?? '';
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-            $user = new SignupModel($username, $password_hash);
+            $user = new UserModel($username, $password_hash);
             $user->save();
 
-            echo "<h2>Signup successful! You can now log in.</h2>";
+            // Set session after signup
+            UserModel::setSession($username);
+
+            // Redirect to homepage
+            header('Location: ../controller/homecontroller.php');
+            exit;
         } else {
             SignupView::render();
         }
