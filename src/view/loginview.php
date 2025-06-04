@@ -12,7 +12,7 @@ class LoginView {
             <title>Login | GameShop</title>
             <link rel="stylesheet" href="style.css">
         </head>
-        <body>
+        <body class="login-hero-bg">
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
@@ -28,28 +28,33 @@ class LoginView {
                     </ul>
                 </div>
             </nav>
-            <div class="header-image">
-                <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
+            <div class="login-card-split">
+                <div class="login-left" style="background: url('images/games/your-featured-game.jpg') center center/cover no-repeat;">
+                    <div class="login-left-content">
+                        <h2>GameShop</h2>
+                        <p>YOU WANT MOST GAMES IN HERE<br>
+                        <span style="font-size:0.95em;">Discover the latest and greatest games, all in one place.</span>
+                        </p>
+                        <button class="view-more-btn" onclick="window.location.href='gameview.php'">VIEW MORE</button>
+                    </div>
+                </div>
+                <div class="login-right">
+                    <h3>Sign in to the site</h3>
+                    <?php
+                    if ($error) {
+                        echo "<p style='color:red; text-align:center;'>$error</p>";
+                    }
+                    ?>
+                    <form class="login-form" action="../controller/logincontroller.php" method="post">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <button type="submit">LOGIN</button>
+                        <div class="form-extra-link">
+                            Don't have an account? <a href="signupview.php">Register here</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <main class="content login-content">
-                <h1>Login</h1>
-                <p>Please log in to access your account.</p>
-                <?php
-                if ($error) {
-                    echo "<p style='color:red;'>$error</p>";
-                }
-                ?>
-                <form action="../controller/logincontroller.php" method="post">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    
-                    <button type="submit">Login</button>
-                </form>
-                <p class="form-extra-link">Don't have an account? <a href="signupview.php">Register here</a>.</p>
-            </main>
             <footer>
                 <div class="footer-links">
                     <a href="privacy.php">Privacy</a> | 

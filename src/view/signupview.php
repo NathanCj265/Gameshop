@@ -11,7 +11,7 @@ class SignupView{
             <title>Sign Up | GameShop</title>
             <link rel="stylesheet" href="style.css">
         </head>
-        <body>
+        <body class="signup-hero-bg">
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
@@ -27,31 +27,27 @@ class SignupView{
                     </ul>
                 </div>
             </nav>
-            <div class="header-image">
-                <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
+            <div class="signup-card-split">
+                <div class="signup-left">
+                    <div class="signup-left-content">
+                        <h2>GameShop</h2>
+                        <p>JOIN THE GAMESHOP COMMUNITY!<br>
+                        <span style="font-size:0.95em;">Discover the latest and greatest games, all in one place.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="signup-right">
+                    <h3 style="color:#232946; font-size:2em; margin-bottom:24px; text-align:center;">Create Account</h3>
+                    <?php if ($error) { echo "<p class='signup-error'>$error</p>"; } ?>
+                    <form class="signup-form" action="../controller/signupcontroller.php" method="post">
+                        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                        <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        <button type="submit" class="signup-btn-main">SIGN UP</button>
+                        <a href="loginview.php" class="signup-btn-alt">Already have an account? Log In</a>
+                    </form>
+                </div>
             </div>
-            <main class="content signup-content">
-                <h1>Sign Up</h1>
-                <p>Please sign up to create an account.</p>
-                <?php
-                if ($error) {
-                    echo "<p style='color:red;'>$error</p>";
-                }
-                ?>
-                <form action="../controller/signupcontroller.php" method="post">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    
-                    <button type="submit">Sign Up</button>
-                </form>
-                <p>Already have an account? <a href="loginview.php">Login here</a>.</p>
-            </main>
             <footer>
                 <div class="footer-links">
                     <a href="privacy.php">Privacy</a> | 

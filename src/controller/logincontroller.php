@@ -20,4 +20,4 @@ class LoginController {
 }
 
 LoginController::execute();
-?>
+

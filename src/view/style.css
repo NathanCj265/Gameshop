@@ -417,13 +417,395 @@ a:hover {
     margin-bottom: 18px;
 }
 
-@media (max-width: 800px) {
-    .about-content {
-        padding: 18px 8px;
-        max-width: 98vw;
+/* Login Page Modern Split Card */
+.login-hero-bg {
+    min-height: 100vh;
+    background: radial-gradient(circle at 60% 40%, #3b5998 0%, #232946 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card-split {
+    display: flex;
+    width: 900px;         /* was 700px */
+    height: 520px;        /* was 400px */
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px #000a;
+    background: #fff0;
+}
+
+.login-card-split .login-left {
+    flex: 1.2;
+    background: url('../../images/games/Vbackgroundlogin.jpg') center center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    padding: 48px 40px;
+}
+
+.login-card-split .login-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(24,28,41,0.55);
+    z-index: 1;
+}
+
+.login-card-split .login-left-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.login-card-split .login-left h2 {
+    font-size: 2.5em;     /* bigger title */
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    color: #fff;
+}
+
+.login-card-split .login-left p {
+    font-size: 1.08em;
+    margin-bottom: 22px;
+    color: #e0e6f7;
+}
+
+.login-card-split .login-left .view-more-btn {
+    background: #3be8b0;
+    color: #232946;
+    border: none;
+    padding: 13px 32px;
+    border-radius: 24px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    margin-top: 10px;
+}
+
+.login-card-split .login-left .view-more-btn:hover {
+    background: #eebf3f;
+    color: #232946;
+}
+
+.login-card-split .login-right {
+    flex: 1;
+    background: linear-gradient(135deg, #e0e6f7 0%, #b6c7e3 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 40px;
+}
+
+.login-card-split .login-right h3 {
+    color: #232946;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.7em;     /* bigger subtitle */
+    margin-bottom: 24px;
+    letter-spacing: 0.03em;
+}
+
+.login-card-split .login-form {
+    width: 100%;
+    max-width: 320px;     /* wider form */
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 1.15em;
+}
+
+.login-card-split .login-form input[type="text"],
+.login-card-split .login-form input[type="password"] {
+    padding: 12px 14px;
+    border: 1.5px solid #a1a6c8;
+    border-radius: 20px;
+    font-size: 1em;
+    background: #fff;
+    color: #232946;
+    transition: border 0.2s, background 0.2s;
+}
+
+.login-card-split .login-form input:focus {
+    border: 2px solid #eebf3f;
+    outline: none;
+    background: #f7f7fa;
+}
+
+.login-card-split .login-form button {
+    background: #3b7cff;
+    color: #fff;
+    border: none;
+    padding: 13px 0;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    margin-top: 8px;
+}
+
+.login-card-split .login-form button:hover {
+    background: #eebf3f;
+    color: #232946;
+}
+
+.login-card-split .login-form .form-extra-link {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1em;
+    color: #232946;
+}
+
+@media (max-width: 900px) {
+    .login-card-split {
+        flex-direction: column;
+        width: 98vw;
+        height: auto;
+        min-height: 600px;
     }
-    .privacy-content, .terms-content {
-        padding: 18px 8px;
-        max-width: 98vw;
+    .login-card-split .login-left,
+    .login-card-split .login-right {
+        min-height: 220px;
+        padding: 24px 10px;
     }
+}
+
+/* Make header and footer transparent on login page */
+.login-hero-bg nav,
+.login-hero-bg footer {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Optional: Center footer text and remove extra margin */
+.login-hero-bg footer {
+    margin-top: 32px;
+    color: #e0e6f7;
+    text-align: center;
+    padding: 18px 0 10px 0;
+}
+
+/* Signup Page Background */
+.signup-hero-bg {
+    min-height: 100vh;
+    background: radial-gradient(circle at 60% 40%, #e53935 0%, #232946 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Signup Card Split - match login card exactly */
+.signup-card-split {
+    display: flex;
+    width: 900px;
+    height: 520px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px #000a;
+    background: #fff0;
+    margin: 0 auto;
+}
+
+.signup-card-split .signup-left {
+    flex: 1.2;
+    background: url('../../images/games/Vbackgroundlogin.jpg') center center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    padding: 48px 40px;
+}
+
+.signup-card-split .signup-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(24,28,41,0.55);
+    z-index: 1;
+}
+
+.signup-card-split .signup-left-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.signup-card-split .signup-left-content h2 {
+    font-size: 2.5em;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 2px 8px #000a;
+}
+
+.signup-card-split .signup-left-content p {
+    font-size: 1.15em;
+    margin-bottom: 22px;
+    color: #e0e6f7;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    text-shadow: 0 2px 8px #000a;
+}
+
+.signup-card-split .signup-left-content span {
+    font-size: 1em;
+    color: #e0e6f7;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+}
+
+.signup-card-split .signup-right {
+    flex: 1;
+    background: linear-gradient(135deg, #e0e6f7 0%, #b6c7e3 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 40px;
+}
+
+.signup-card-split .signup-right h2 {
+    color: #232946;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.7em;
+    margin-bottom: 24px;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.signup-card-split .signup-welcome {
+    color: #3b7cff;
+    font-size: 1.1em;
+    margin-bottom: 24px;
+    text-align: center;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 1.15em;
+}
+
+.signup-form input[type="email"],
+.signup-form input[type="text"],
+.signup-form input[type="password"] {
+    padding: 12px 14px;
+    border: 1.5px solid #a1a6c8;
+    border-radius: 20px;
+    font-size: 1em;
+    background: #fff;
+    color: #232946;
+    transition: border 0.2s, background 0.2s;
+}
+
+.signup-form input:focus {
+    border: 2px solid #eebf3f;
+    outline: none;
+    background: #f7f7fa;
+}
+
+.signup-btn-main {
+    background: #3b7cff;
+    color: #fff;
+    border: none;
+    padding: 13px 0;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    margin-top: 8px;
+}
+
+.signup-btn-main:hover {
+    background: #eebf3f;
+    color: #232946;
+}
+
+.signup-btn-alt {
+    display: block;
+    margin: 14px auto 0 auto;
+    text-align: center;
+    color: #232946;
+    border: 1.5px solid #3b7cff;
+    border-radius: 14px;
+    padding: 7px 0;
+    font-size: 0.98em;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    text-decoration: none;
+    background: #e0e6f7;
+    width: 70%;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.signup-btn-alt:hover {
+    background: #3b7cff;
+    color: #fff;
+    border: 1.5px solid #3b7cff;
+}
+
+.signup-error {
+    color: #e53935;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+@media (max-width: 900px) {
+    .signup-card-split {
+        flex-direction: column;
+        width: 98vw;
+        height: auto;
+        min-height: 600px;
+    }
+    .signup-card-split .signup-left,
+    .signup-card-split .signup-right {
+        min-height: 220px;
+        padding: 24px 10px;
+    }
+}
+
+/* Transparent header and footer for login and signup pages */
+.login-hero-bg nav,
+.login-hero-bg footer,
+.signup-hero-bg nav,
+.signup-hero-bg footer {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Remove nav border only on login/signup */
+.login-hero-bg nav,
+.signup-hero-bg nav {
+    border-bottom: none !important;
+}
+
+/* Center footer text and adjust color for login/signup */
+.login-hero-bg footer,
+.signup-hero-bg footer {
+    margin-top: 32px;
+    color: #e0e6f7;
+    text-align: center;
+    padding: 18px 0 10px 0;
 }
