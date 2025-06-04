@@ -1,7 +1,76 @@
 <?php
 
 class GameView {
-    public static function render($games) {
+    public static function render($games = null) {
+        // Hardcoded games with images
+        $games = [
+            [
+                'title' => "Marvel’s Spider-Man 2",
+                'platform' => "PS5",
+                'genre' => "Action-Adventure",
+                'image' => "images/games/spiderman2.jpg"
+            ],
+            [
+                'title' => "God of War: Ragnarok",
+                'platform' => "PS5",
+                'genre' => "Action",
+                'image' => "images/games/godofwar.jpg"
+            ],
+            [
+                'title' => "The Legend of Zelda: Tears of the Kingdom",
+                'platform' => "Nintendo Switch",
+                'genre' => "Adventure",
+                'image' => "images/games/zelda.jpg"
+            ],
+            [
+                'title' => "Forza Horizon 5",
+                'platform' => "Xbox",
+                'genre' => "Racing",
+                'image' => "images/games/forzahorizon5.jpg"
+            ],
+            [
+                'title' => "Elden Ring",
+                'platform' => "Steam",
+                'genre' => "RPG",
+                'image' => "images/games/eldenring.jpg"
+            ],
+            [
+                'title' => "Cyberpunk 2077",
+                'platform' => "Steam",
+                'genre' => "RPG",
+                'image' => "images/games/cyberpunk2077.jpg"
+            ],
+            [
+                'title' => "Counter-Strike 2",
+                'platform' => "Steam",
+                'genre' => "Shooter",
+                'image' => "images/games/counterstrike2.jpg"
+            ],
+            [
+                'title' => "Animal Crossing: New Horizons",
+                'platform' => "Nintendo Switch",
+                'genre' => "Simulation",
+                'image' => "images/games/animalcrossing.jpg"
+            ],
+            [
+                'title' => "Halo Infinite",
+                'platform' => "Xbox",
+                'genre' => "Shooter",
+                'image' => "images/games/haloinfinite.jpg"
+            ],
+            [
+                'title' => "Starfield",
+                'platform' => "Xbox",
+                'genre' => "RPG",
+                'image' => "images/games/starfield.jpg"
+            ],
+            [
+                'title' => "Super Mario Odyssey",
+                'platform' => "Nintendo Switch",
+                'genre' => "Platformer",
+                'image' => "images/games/supermario.jpg"
+            ],
+        ];
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -35,21 +104,15 @@ class GameView {
                 <h2>Available Games</h2>
                 <div class="game-list">
                 <?php
-                if ($games == null || count($games) === 0) {
-                    echo "<h3>No games found!</h3>";
-                } else {
-                    foreach ($games as $game) {
-                        echo '<div class="game-card">';
-                        // Placeholder image, replace src with your actual image path later
-                        echo '<img src="images/game-placeholder.png" alt="Game Image" class="game-img">';
-                        echo '<div class="game-title">' . htmlspecialchars($game->title) . '</div>';
-                        echo '<div class="game-meta">Platform: ' . htmlspecialchars($game->platform) . '</div>';
-                        echo '<div class="game-meta">Genre: ' . htmlspecialchars($game->genre) . '</div>';
-                        // Placeholder for price and description
-                        echo '<div class="game-price">Price: $59.99</div>';
-                        echo '<div class="game-description">Game description goes here.</div>';
-                        echo '</div>';
-                    }
+                foreach ($games as $game) {
+                    echo '<div class="game-card">';
+                    echo '<img src="' . htmlspecialchars($game['image']) . '" alt="' . htmlspecialchars($game['title']) . '" class="game-img">';
+                    echo '<div class="game-title">' . htmlspecialchars($game['title']) . '</div>';
+                    echo '<div class="game-meta">Platform: ' . htmlspecialchars($game['platform']) . '</div>';
+                    echo '<div class="game-meta">Genre: ' . htmlspecialchars($game['genre']) . '</div>';
+                    echo '<div class="game-price">Price: $59.99</div>';
+                    echo '<div class="game-description">Game description goes here.</div>';
+                    echo '</div>';
                 }
                 ?>
                 </div>
@@ -67,4 +130,4 @@ class GameView {
     }
 }
 
-GameView::render($games ?? []);
+GameView::render();

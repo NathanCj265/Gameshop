@@ -9,7 +9,7 @@ class LoginController {
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
             if (UserModel::authenticate($username, $password)) {
-                header('Location: ../controller/homecontroller.php');
+                header('Location: ../view/index.php');
                 exit;
             } else {
                 $error = "Invalid username or password.";
