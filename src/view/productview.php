@@ -2,14 +2,14 @@
 
 class ProductView {
     public static function render($products = null) {
-       
+
         $products = [
             [
                 'name' => "DualSense Wireless Controller",
                 'price' => 69.99,
                 'stock' => 25,
                 'description' => "The latest PlayStation 5 controller with haptic feedback.",
-                'image' => "images/products/dualsense.jpg"
+                'image' => "images/products/dualsensecontroller.jpg"
             ],
             [
                 'name' => "Xbox Series X Console",
@@ -23,21 +23,21 @@ class ProductView {
                 'price' => 349.99,
                 'stock' => 15,
                 'description' => "Nintendo Switch with a vibrant OLED display.",
-                'image' => "images/products/switcholed.jpg"
+                'image' => "images/products/Nintendoswitcholed.jpg"
             ],
             [
                 'name' => "Steam Gift Card $50",
                 'price' => 50.00,
                 'stock' => 100,
                 'description' => "Add funds to your Steam Wallet to buy games and more.",
-                'image' => "images/products/steamgiftcard.jpg"
+                'image' => "images/products/Steamcard.jpg"
             ],
             [
                 'name' => "PlayStation Plus 12 Month Membership",
                 'price' => 59.99,
                 'stock' => 40,
                 'description' => "Access online multiplayer and free monthly games on PS5/PS4.",
-                'image' => "images/products/psplus.jpg"
+                'image' => "images/products/ps5membership.jpg"
             ],
         ];
         ?>
@@ -47,26 +47,26 @@ class ProductView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Products | GameShop</title>
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
         <body>
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
-                        <a href="index.php"><img src="images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
+                        <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                     <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="productview.php">Products</a></li>
-                        <li><a href="gameview.php">Games</a></li>
-                        <li><a href="aboutview.php">About Us</a></li>
-                        <li><a href="signupview.php">Sign Up</a></li>
-                        <li><a href="loginview.php">Login</a></li>
+                        <li><a href="/Gameshop/src/view/indexview.php">Home</a></li>
+                        <li><a href="/Gameshop/src/view/productview.php">Products</a></li>
+                        <li><a href="/Gameshop/src/view/gameview.php">Games</a></li>
+                        <li><a href="/Gameshop/src/view/aboutview.php">About Us</a></li>
+                        <li><a href="/Gameshop/src/view/signupview.php">Sign Up</a></li>
+                        <li><a href="/Gameshop/src/view/loginview.php">Login</a></li>
                     </ul>
                 </div>
             </nav>
             <div class="header-image">
-                <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
+                <img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo">
             </div>
             <main class="content products-content">
                 <h1>Products</h1>
@@ -75,7 +75,7 @@ class ProductView {
                 <?php
                 foreach ($products as $product) {
                     echo '<div class="product-card">';
-                    echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-img">';
+                    echo '<img src="/Gameshop/' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-img">';
                     echo '<div class="product-title">' . htmlspecialchars($product['name']) . '</div>';
                     echo '<div class="product-price">Price: $' . number_format($product['price'], 2) . '</div>';
                     echo '<div class="product-meta">Stock: ' . htmlspecialchars($product['stock']) . '</div>';
@@ -87,8 +87,8 @@ class ProductView {
             </main>
             <footer>
                 <div class="footer-links">
-                    <a href="privacy.php">Privacy</a> | 
-                    <a href="terms.php">Terms</a>
+                    <a href="/Gameshop/src/view/privacy.php">Privacy</a> | 
+                    <a href="/Gameshop/src/view/terms.php">Terms</a>
                 </div>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
             </footer>

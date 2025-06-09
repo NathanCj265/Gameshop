@@ -14,14 +14,14 @@ class TermsView {
         <body>
             <nav>
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="productview.php">Products</a></li>
-                    <li><a href="gameview.php">Games</a></li>
-                    <li><a href="aboutview.php">About Us</a></li>
-                    <li><a href="privacy.php">Privacy</a></li>
-                    <li><a href="terms.php">Terms</a></li>
-                    <li><a href="signupview.php">Sign Up</a></li>
-                    <li><a href="loginview.php">Login</a></li>
+                 <ul>
+                     <li><a href="indexview.php">Home</a></li>
+                        <li><a href="productview.php">Products</a></li>
+                        <li><a href="gameview.php">Games</a></li>
+                        <li><a href="aboutview.php">About Us</a></li>
+                        <li><a href="signupview.php">Sign Up</a></li>
+                        <li><a href="loginview.php">Login</a></li>
+                    </ul>
                 </ul>
             </nav>
             <div class="header-image">
@@ -42,7 +42,12 @@ class TermsView {
                 <p>If you have any questions about these terms, please contact our customer service team.</p>
             </main>
             <footer>
+                  <div class="footer-links">
+                    <a href="privacy.php">Privacy</a> | 
+                    <a href="terms.php">Terms</a>
+                </div>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
+
             </footer>
         </body>
         </html>

@@ -18,14 +18,14 @@ class PrivacyView {
                         <a href="index.php"><img src="images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                     <ul>
-                        <li><a href="index.php">Home</a></li>
+                       <ul>
+                     <li><a href="indexview.php">Home</a></li>
                         <li><a href="productview.php">Products</a></li>
                         <li><a href="gameview.php">Games</a></li>
                         <li><a href="aboutview.php">About Us</a></li>
-                        <li><a href="privacy.php">Privacy</a></li>
-                        <li><a href="terms.php">Terms</a></li>
                         <li><a href="signupview.php">Sign Up</a></li>
                         <li><a href="loginview.php">Login</a></li>
+                    </ul>
                     </ul>
                 </div>
             </nav>

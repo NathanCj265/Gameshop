@@ -19,7 +19,7 @@ class LoginView {
                         <a href="index.php"><img src="images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                     <ul>
-                        <li><a href="index.php">Home</a></li>
+                     <li><a href="indexview.php">Home</a></li>
                         <li><a href="productview.php">Products</a></li>
                         <li><a href="gameview.php">Games</a></li>
                         <li><a href="aboutview.php">About Us</a></li>
