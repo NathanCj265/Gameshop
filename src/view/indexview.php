@@ -18,7 +18,7 @@ class HomeView {
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
-                        <a href="indexview.php"><img src="images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
+                       <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                     <ul>
                         <li><a href="indexview.php">Home</a></li>

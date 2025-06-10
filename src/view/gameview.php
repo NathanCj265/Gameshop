@@ -8,67 +8,67 @@ class GameView {
                 'title' => "Marvel’s Spider-Man 2",
                 'platform' => "PS5",
                 'genre' => "Action-Adventure",
-                'image' => "images/games/spiderman2.jpg"
+                'image' => "images/games/Spiderman2.jpg"
             ],
-            [
+            [   
                 'title' => "God of War: Ragnarok",
                 'platform' => "PS5",
                 'genre' => "Action",
-                'image' => "images/games/godofwar.jpg"
+                'image' => "images/games/GodofWar.jpg"
             ],
             [
                 'title' => "The Legend of Zelda: Tears of the Kingdom",
                 'platform' => "Nintendo Switch",
                 'genre' => "Adventure",
-                'image' => "images/games/zelda.jpg"
+                'image' => "images/games/Zelda.jpg"
             ],
             [
                 'title' => "Forza Horizon 5",
                 'platform' => "Xbox",
                 'genre' => "Racing",
-                'image' => "images/games/forzahorizon5.jpg"
+                'image' => "images/games/Forzahorizon5.jpg"
             ],
             [
                 'title' => "Elden Ring",
                 'platform' => "Steam",
                 'genre' => "RPG",
-                'image' => "images/games/eldenring.jpg"
+                'image' => "images/games/Eldenring.jpg"
             ],
             [
                 'title' => "Cyberpunk 2077",
                 'platform' => "Steam",
                 'genre' => "RPG",
-                'image' => "images/games/cyberpunk2077.jpg"
+                'image' => "images/games/Cyberpunk2077.jpg"
             ],
             [
                 'title' => "Counter-Strike 2",
                 'platform' => "Steam",
                 'genre' => "Shooter",
-                'image' => "images/games/counterstrike2.jpg"
+                'image' => "images/games/Counterstrike2.jpg"
             ],
             [
                 'title' => "Animal Crossing: New Horizons",
                 'platform' => "Nintendo Switch",
                 'genre' => "Simulation",
-                'image' => "images/games/animalcrossing.jpg"
+                'image' => "images/games/Animalcrossing.jpg"
             ],
             [
                 'title' => "Halo Infinite",
                 'platform' => "Xbox",
                 'genre' => "Shooter",
-                'image' => "images/games/haloinfinite.jpg"
+                'image' => "images/games/Haloinfinite.jpg"
             ],
             [
                 'title' => "Starfield",
                 'platform' => "Xbox",
                 'genre' => "RPG",
-                'image' => "images/games/starfield.jpg"
+                'image' => "images/games/Starfield.jpg"
             ],
             [
                 'title' => "Super Mario Odyssey",
                 'platform' => "Nintendo Switch",
                 'genre' => "Platformer",
-                'image' => "images/games/supermario.jpg"
+                'image' => "images/games/SuperMario.jpg"
             ],
         ];
         ?>
@@ -84,7 +84,7 @@ class GameView {
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
-                        <a href="index.php"><img src="images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
+                        <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                <ul>
                      <li><a href="indexview.php">Home</a></li>
@@ -97,7 +97,7 @@ class GameView {
                 </div>
             </nav>
             <div class="header-image">
-                <img src="images/Gameshop.png" alt="GameShop Logo" class="logo">
+            <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
             </div>
             <main class="content games-content">
                 <h1>Games</h1>
