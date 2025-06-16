@@ -1,7 +1,7 @@
 <?php
 
 class ProductView {
-    public static function render($products = null) {
+    public static function render($products  = null, $username = null) {
 
         $products = [
             [
@@ -55,13 +55,18 @@ class ProductView {
                     <div class="logo-nav">
                         <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
-                    <ul>
-                        <li><a href="/Gameshop/src/view/indexview.php">Home</a></li>
-                        <li><a href="/Gameshop/src/view/productview.php">Products</a></li>
-                        <li><a href="/Gameshop/src/view/gameview.php">Games</a></li>
-                        <li><a href="/Gameshop/src/view/aboutview.php">About Us</a></li>
-                        <li><a href="/Gameshop/src/view/signupview.php">Sign Up</a></li>
-                        <li><a href="/Gameshop/src/view/loginview.php">Login</a></li>
+                 <ul>
+                        <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>
+                        <li><a href="/Gameshop/src/controller/productcontroller.php">Products</a></li>
+                        <li><a href="/Gameshop/src/controller/gamecontroller.php">Games</a></li>
+                        <li><a href="/Gameshop/src/controller/aboutcontroller.php">About Us</a></li>
+                        <?php if (empty($username)): ?>
+                        <li><a href="/Gameshop/src/controller/signupcontroller.php">Sign Up</a></li>
+                        <li><a href="/Gameshop/src/controller/logincontroller.php">Login</a></li>
+                        <?php else: ?>
+                       <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($username) ?></li>
+                      <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
+                    <?php endif; ?>
                     </ul>
                 </div>
             </nav>
@@ -98,4 +103,3 @@ class ProductView {
     }
 }
 
-ProductView::render();

@@ -23,7 +23,7 @@ class GameModel implements ORMInterface {
 
     public function save() {
         if ($this->id) {
-            $stmt = self::$pdo->prepare("UPDATE games SET title=?, genre=?, platform=? WHERE id=?");
+            $stmt = self::$pdo->prepare("UPDATE game SET title=?, genre=?, platform=? WHERE id=?");
             $stmt->execute([$this->title, $this->genre, $this->platform, $this->id]);
         } else {
             $stmt = self::$pdo->prepare("INSERT INTO game (title, genre, platform) VALUES (?, ?, ?)");
@@ -34,7 +34,7 @@ class GameModel implements ORMInterface {
 
     public function delete() {
         if ($this->id) {
-            $stmt = self::$pdo->prepare("DELETE FROM games WHERE id=?");
+            $stmt = self::$pdo->prepare("DELETE FROM game WHERE id=?");
             $stmt->execute([$this->id]);
         }
     }
@@ -45,7 +45,7 @@ class GameModel implements ORMInterface {
 
     public static function findByID($id) {
         include __DIR__ . '/dbconnect.php';
-        $stmt = $pdo->prepare("SELECT * FROM games WHERE id=?");
+        $stmt = $pdo->prepare("SELECT * FROM game WHERE id=?");
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         if ($row) {
@@ -56,7 +56,7 @@ class GameModel implements ORMInterface {
 
     public static function findAll() {
         include __DIR__ . '/dbconnect.php';
-        $stmt = $pdo->query("SELECT * FROM games");
+        $stmt = $pdo->query("SELECT * FROM game");
         $games = [];
         while ($row = $stmt->fetch()) {
             $games[] = new GameModel($row['title'], $row['genre'], $row['platform'], $row['id']);

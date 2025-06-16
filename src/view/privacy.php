@@ -9,7 +9,7 @@ class PrivacyView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Privacy Policy | GameShop</title>
-            <link rel="stylesheet" href="style.css">
+           <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
         <body>
             <nav>

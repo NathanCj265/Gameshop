@@ -25,6 +25,12 @@ class UserModel implements ORMInterface {
             $stmt = self::$pdo->prepare("UPDATE users SET username=?, email=?, password_hash=? WHERE id=?");
             $stmt->execute([$this->username, $this->email, $this->password_hash, $this->id]);
         } else {
+            // Check for duplicate username before insert
+            $checkStmt = self::$pdo->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+            $checkStmt->execute([$this->username]);
+            if ($checkStmt->fetchColumn() > 0) {
+                throw new Exception("Username already exists.");
+            }
             $stmt = self::$pdo->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
             $stmt->execute([$this->username, $this->email, $this->password_hash]);
             $this->id = self::$pdo->lastInsertId();

@@ -9,7 +9,9 @@ class LoginController {
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
             if (UserModel::authenticate($username, $password)) {
-                header('Location: ../view/index.php');
+                // After successful login
+                $_SESSION['username'] = $username; // Store username in session
+                header("Location: /Gameshop/src/controller/indexcontroller.php");
                 exit;
             } else {
                 $error = "Invalid username or password.";

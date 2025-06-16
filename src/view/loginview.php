@@ -10,7 +10,7 @@ class LoginView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Login | GameShop</title>
-            <link rel="stylesheet" href="style.css">
+           <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
         <body class="login-hero-bg">
             <nav>
@@ -19,12 +19,12 @@ class LoginView {
                        <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                     <ul>
-                     <li><a href="indexview.php">Home</a></li>
-                        <li><a href="productview.php">Products</a></li>
-                        <li><a href="gameview.php">Games</a></li>
-                        <li><a href="aboutview.php">About Us</a></li>
-                        <li><a href="signupview.php">Sign Up</a></li>
-                        <li><a href="loginview.php">Login</a></li>
+                        <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>
+                        <li><a href="/Gameshop/src/controller/productcontroller.php">Products</a></li>
+                        <li><a href="/Gameshop/src/controller/gamecontroller.php">Games</a></li>
+                        <li><a href="/Gameshop/src/controller/aboutview.php">About Us</a></li>
+                        <li><a href="/Gameshop/src/controller/signupcontroller.php">Sign Up</a></li>
+                        <li><a href="/Gameshop/src/controller/logincontroller.php">Login</a></li>
                     </ul>
                 </div>
             </nav>
@@ -68,4 +68,3 @@ class LoginView {
     }
 }
 
-LoginView::render([]);

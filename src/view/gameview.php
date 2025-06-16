@@ -1,74 +1,74 @@
 <?php
 
 class GameView {
-    public static function render($games = null) {
+    public static function render($games = null, $username = null) { // <-- add $username
       
         $games = [
             [
                 'title' => "Marvel’s Spider-Man 2",
                 'platform' => "PS5",
                 'genre' => "Action-Adventure",
-                'image' => "images/games/Spiderman2.jpg"
+                'image' => "/Gameshop/images/games/Spiderman2.jpg"
             ],
             [   
                 'title' => "God of War: Ragnarok",
                 'platform' => "PS5",
                 'genre' => "Action",
-                'image' => "images/games/GodofWar.jpg"
+                'image' => "/Gameshop/images/games/GodofWar.jpg"
             ],
             [
                 'title' => "The Legend of Zelda: Tears of the Kingdom",
                 'platform' => "Nintendo Switch",
                 'genre' => "Adventure",
-                'image' => "images/games/Zelda.jpg"
+                'image' => "/Gameshop/images/games/Zelda.jpg"
             ],
             [
                 'title' => "Forza Horizon 5",
                 'platform' => "Xbox",
                 'genre' => "Racing",
-                'image' => "images/games/Forzahorizon5.jpg"
+                'image' => "/Gameshop/images/games/Forzahorizon5.jpg"
             ],
             [
                 'title' => "Elden Ring",
                 'platform' => "Steam",
                 'genre' => "RPG",
-                'image' => "images/games/Eldenring.jpg"
+                'image' => "/Gameshop/images/games/Eldenring.jpg"
             ],
             [
                 'title' => "Cyberpunk 2077",
                 'platform' => "Steam",
                 'genre' => "RPG",
-                'image' => "images/games/Cyberpunk2077.jpg"
+                'image' => "/Gameshop/images/games/Cyberpunk2077.jpg"
             ],
             [
                 'title' => "Counter-Strike 2",
                 'platform' => "Steam",
                 'genre' => "Shooter",
-                'image' => "images/games/Counterstrike2.jpg"
+                'image' => "/Gameshop/images/games/Counterstrike2.jpg"
             ],
             [
                 'title' => "Animal Crossing: New Horizons",
                 'platform' => "Nintendo Switch",
                 'genre' => "Simulation",
-                'image' => "images/games/Animalcrossing.jpg"
+                'image' => "/Gameshop/images/games/Animalcrossing.jpg"
             ],
             [
                 'title' => "Halo Infinite",
                 'platform' => "Xbox",
                 'genre' => "Shooter",
-                'image' => "images/games/Haloinfinite.jpg"
+                'image' => "/Gameshop/images/games/Haloinfinite.jpg"
             ],
             [
                 'title' => "Starfield",
                 'platform' => "Xbox",
                 'genre' => "RPG",
-                'image' => "images/games/Starfield.jpg"
+                'image' => "/Gameshop/images/games/Starfield.jpg"
             ],
             [
                 'title' => "Super Mario Odyssey",
                 'platform' => "Nintendo Switch",
                 'genre' => "Platformer",
-                'image' => "images/games/SuperMario.jpg"
+                'image' => "/Gameshop/images/games/SuperMario.jpg"
             ],
         ];
         ?>
@@ -78,7 +78,7 @@ class GameView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Games | GameShop</title>
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
         <body>
             <nav>
@@ -86,13 +86,18 @@ class GameView {
                     <div class="logo-nav">
                         <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
-               <ul>
-                     <li><a href="indexview.php">Home</a></li>
-                        <li><a href="productview.php">Products</a></li>
-                        <li><a href="gameview.php">Games</a></li>
-                        <li><a href="aboutview.php">About Us</a></li>
-                        <li><a href="signupview.php">Sign Up</a></li>
-                        <li><a href="loginview.php">Login</a></li>
+     <ul>
+                        <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>
+                        <li><a href="/Gameshop/src/controller/productcontroller.php">Products</a></li>
+                        <li><a href="/Gameshop/src/controller/gamecontroller.php">Games</a></li>
+                        <li><a href="/Gameshop/src/controller/aboutcontroller.php">About Us</a></li>
+                        <?php if (empty($username)): ?>
+                        <li><a href="/Gameshop/src/controller/signupcontroller.php">Sign Up</a></li>
+                        <li><a href="/Gameshop/src/controller/logincontroller.php">Login</a></li>
+                        <?php else: ?>
+                       <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($username) ?></li>
+                      <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
+                    <?php endif; ?>
                     </ul>
                 </div>
             </nav>
@@ -130,4 +135,4 @@ class GameView {
     }
 }
 
-GameView::render();
+
