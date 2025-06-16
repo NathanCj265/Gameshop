@@ -22,7 +22,7 @@ class LoginView {
                         <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>
                         <li><a href="/Gameshop/src/controller/productcontroller.php">Products</a></li>
                         <li><a href="/Gameshop/src/controller/gamecontroller.php">Games</a></li>
-                        <li><a href="/Gameshop/src/controller/aboutview.php">About Us</a></li>
+                        <li><a href="/Gameshop/src/controller/aboutcontroller.php">About Us</a></li>
                         <li><a href="/Gameshop/src/controller/signupcontroller.php">Sign Up</a></li>
                         <li><a href="/Gameshop/src/controller/logincontroller.php">Login</a></li>
                     </ul>

@@ -1,8 +1,7 @@
 <?php
 
 class GameView {
-    public static function render($games = null, $username = null) { // <-- add $username
-      
+    public static function render($games = null, $username = null) { 
         $games = [
             [
                 'title' => "Marvel’s Spider-Man 2",
@@ -97,6 +96,7 @@ class GameView {
                         <?php else: ?>
                        <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($username) ?></li>
                       <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
+                      <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                     <?php endif; ?>
                     </ul>
                 </div>

@@ -40,6 +40,7 @@ class HomeView {
                         <?php else: ?>
                        <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($username) ?></li>
                       <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
+                      <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                     <?php endif; ?>
                     </ul>
                 </div>
@@ -50,14 +51,14 @@ class HomeView {
                 <p>Welcome to GameShop, your one-stop shop for all your gaming needs!</p>
                 <p>Explore our wide range of products and games.</p>
 
-                <h2>Featured Products</h2>
+                <h2 class="glow-title">Featured Products</h2>
                 <div class="product-list" style="display:flex;gap:24px;flex-wrap:wrap;">
                 <?php
                 if (empty($featuredProducts)) {
                     echo "<h3>No featured products found!</h3>";
                 } else {
                     foreach ($featuredProducts as $product) {
-                        echo '<div class="product-item" style="background:#23284a;padding:18px;border-radius:12px;box-shadow:0 2px 8px #0002;width:260px;color:#fff;">';
+                        echo '<div class="glow-card">';
                         if (!empty($product->image)) {
                             echo '<img src="' . htmlspecialchars($product->image) . '" alt="' . htmlspecialchars($product->name) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
                         }
@@ -73,14 +74,14 @@ class HomeView {
                 ?>
                 </div>
 
-                <h2 style="margin-top:40px;">Featured Games</h2>
+                <h2 class="glow-title" style="margin-top:40px;">Featured Games</h2>
                 <div class="product-list" style="display:flex;gap:24px;flex-wrap:wrap;">
                 <?php
                 if (empty($featuredGames)) {
                     echo "<h3>No featured games found!</h3>";
                 } else {
                     foreach ($featuredGames as $game) {
-                        echo '<div class="product-item" style="background:#23284a;padding:18px;border-radius:12px;box-shadow:0 2px 8px #0002;width:260px;color:#fff;">';
+                        echo '<div class="glow-card">';
                         if (!empty($game->image)) {
                             echo '<img src="' . htmlspecialchars($game->image) . '" alt="' . htmlspecialchars($game->name) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
                         }

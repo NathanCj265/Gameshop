@@ -13,16 +13,20 @@ class TermsView {
         </head>
         <body>
             <nav>
-                <ul>
-                 <ul>
-                     <li><a href="indexview.php">Home</a></li>
-                        <li><a href="productview.php">Products</a></li>
-                        <li><a href="gameview.php">Games</a></li>
-                        <li><a href="aboutview.php">About Us</a></li>
-                        <li><a href="signupview.php">Sign Up</a></li>
-                        <li><a href="loginview.php">Login</a></li>
+              <ul>
+                        <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>
+                        <li><a href="/Gameshop/src/controller/productcontroller.php">Products</a></li>
+                        <li><a href="/Gameshop/src/controller/gamecontroller.php">Games</a></li>
+                        <li><a href="/Gameshop/src/controller/aboutcontroller.php">About Us</a></li>
+                        <?php if (empty($username)): ?>
+                        <li><a href="/Gameshop/src/controller/signupcontroller.php">Sign Up</a></li>
+                        <li><a href="/Gameshop/src/controller/logincontroller.php">Login</a></li>
+                        <?php else: ?>
+                       <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($username) ?></li>
+                      <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
+                      <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
+                    <?php endif; ?>
                     </ul>
-                </ul>
             </nav>
             <div class="header-image">
                <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
