@@ -29,7 +29,7 @@ class TermsView {
                     </ul>
             </nav>
             <div class="header-image">
-               <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
+               <a href="/Gameshop/src/controller/indexcontroller.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
             </div>
             <main class="content terms-content">
                 <h1>Terms and Conditions</h1>

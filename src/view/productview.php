@@ -1,51 +1,12 @@
 <?php
 
 class ProductView {
-    public static function render($products  = null, $username = null) {
-
-        $products = [
-            [
-                'name' => "DualSense Wireless Controller",
-                'price' => 69.99,
-                'stock' => 25,
-                'description' => "The latest PlayStation 5 controller with haptic feedback.",
-                'image' => "images/products/dualsensecontroller.jpg"
-            ],
-            [
-                'name' => "Xbox Series X Console",
-                'price' => 499.99,
-                'stock' => 10,
-                'description' => "The fastest, most powerful Xbox ever.",
-                'image' => "images/products/xboxseriesx.jpg"
-            ],
-            [
-                'name' => "Nintendo Switch OLED",
-                'price' => 349.99,
-                'stock' => 15,
-                'description' => "Nintendo Switch with a vibrant OLED display.",
-                'image' => "images/products/Nintendoswitcholed.jpg"
-            ],
-            [
-                'name' => "Steam Gift Card $50",
-                'price' => 50.00,
-                'stock' => 100,
-                'description' => "Add funds to your Steam Wallet to buy games and more.",
-                'image' => "images/products/Steamcard.jpg"
-            ],
-            [
-                'name' => "PlayStation Plus 12 Month Membership",
-                'price' => 59.99,
-                'stock' => 40,
-                'description' => "Access online multiplayer and free monthly games on PS5/PS4.",
-                'image' => "images/products/ps5membership.jpg"
-            ],
-        ];
+    public static function render($products = null, $username = null) {
         ?>
         <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Products | GameShop</title>
             <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
@@ -53,7 +14,7 @@ class ProductView {
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
-                        <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
+                        <a href="/Gameshop/src/controller/indexcontroller.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                  <ul>
                         <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>
@@ -68,25 +29,38 @@ class ProductView {
                       <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                       <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                     <?php endif; ?>
+                        <li class="cart-nav">
+                            <a href="#" id="cart-toggle" style="font-weight:bold;">
+                                🛒 Cart <span id="cart-count" style="color:#ffd700;">0</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
+            <!-- Cart dropdown (hidden by default, shown on click) -->
+            <div id="cart" class="cart cart-dropdown" style="display:none;">
+                <h2>Cart</h2>
+                <ul id="cart-items"></ul>
+            </div>
             <div class="header-image">
                 <img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo">
             </div>
             <main class="content products-content">
                 <h1>Products</h1>
-                <h2>Available Products</h2>
                 <div class="product-list">
                 <?php
-                foreach ($products as $product) {
-                    echo '<div class="product-card">';
-                    echo '<img src="/Gameshop/' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-img">';
-                    echo '<div class="product-title">' . htmlspecialchars($product['name']) . '</div>';
-                    echo '<div class="product-price">Price: $' . number_format($product['price'], 2) . '</div>';
-                    echo '<div class="product-meta">Stock: ' . htmlspecialchars($product['stock']) . '</div>';
-                    echo '<div class="product-description">' . htmlspecialchars($product['description'] ?? 'No description.') . '</div>';
-                    echo '</div>';
+                if ($products) {
+                    foreach ($products as $product) {
+                        echo '<div class="product-card">';
+                        echo '<img src="/Gameshop/images/products/' . htmlspecialchars($product->getImage()) . '" alt="' . htmlspecialchars($product->getName()) . '" class="product-img">';
+                        echo '<div class="product-title">' . htmlspecialchars($product->getName()) . '</div>';
+                        echo '<div class="product-meta">Price: &euro;' . htmlspecialchars($product->getPrice()) . '</div>';
+                        echo '<div class="product-meta">Stock: ' . htmlspecialchars($product->getStock()) . '</div>';
+                        echo '<button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($product->getName()) . '\')">Buy</button>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p>No products found.</p>';
                 }
                 ?>
                 </div>
@@ -98,6 +72,7 @@ class ProductView {
                 </div>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
             </footer>
+            <script src="/Gameshop/src/view/cart.js"></script>
         </body>
         </html>
         <?php

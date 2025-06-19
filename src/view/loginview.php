@@ -16,7 +16,7 @@ class LoginView {
             <nav>
                 <div class="navbar-container">
                     <div class="logo-nav">
-                       <a href="/Gameshop/index.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
+                       <a href="/Gameshop/src/controller/indexcontroller.php"><img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo"></a>
                     </div>
                     <ul>
                         <li><a href="/Gameshop/src/controller/indexcontroller.php">Home</a></li>

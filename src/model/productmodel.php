@@ -7,12 +7,14 @@ class ProductModel implements ORMInterface {
     private $name;
     private $price;
     private $stock;
+    private $image;
     private static $pdo;
 
-    public function __construct($name, $price, $stock, $id = null) {
+    public function __construct($name, $price, $stock, $image = null, $id = null) {
         $this->name = $name;
         $this->price = $price;
         $this->stock = $stock;
+        $this->image = $image;
         $this->id = $id;
         if (!self::$pdo) {
             include __DIR__ . '/dbconnect.php';
@@ -22,11 +24,11 @@ class ProductModel implements ORMInterface {
 
     public function save() {
         if ($this->id) {
-            $stmt = self::$pdo->prepare("UPDATE products SET name=?, price=?, stock=? WHERE id=?");
-            $stmt->execute([$this->name, $this->price, $this->stock, $this->id]);
+            $stmt = self::$pdo->prepare("UPDATE products SET name=?, price=?, stock=?, image=? WHERE id=?");
+            $stmt->execute([$this->name, $this->price, $this->stock, $this->image, $this->id]);
         } else {
-            $stmt = self::$pdo->prepare("INSERT INTO products (name, price, stock) VALUES (?, ?, ?)");
-            $stmt->execute([$this->name, $this->price, $this->stock]);
+            $stmt = self::$pdo->prepare("INSERT INTO products (name, price, stock, image) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$this->name, $this->price, $this->stock, $this->image]);
             $this->id = self::$pdo->lastInsertId();
         }
     }
@@ -41,6 +43,18 @@ class ProductModel implements ORMInterface {
     public function getID() {
         return $this->id;
     }
+    public function getName() {
+        return $this->name;
+    }
+    public function getPrice() {
+        return $this->price;
+    }
+    public function getStock() {
+        return $this->stock;
+    }
+    public function getImage() {
+        return $this->image;
+    }
 
     public static function findByID($id) {
         include __DIR__ . '/dbconnect.php';
@@ -48,7 +62,7 @@ class ProductModel implements ORMInterface {
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         if ($row) {
-            return new ProductModel($row['name'], $row['price'], $row['stock'], $row['id']);
+            return new ProductModel($row['name'], $row['price'], $row['stock'], $row['image'], $row['id']);
         }
         return null;
     }
@@ -58,7 +72,7 @@ class ProductModel implements ORMInterface {
         $stmt = $pdo->query("SELECT * FROM products");
         $products = [];
         while ($row = $stmt->fetch()) {
-            $products[] = new ProductModel($row['name'], $row['price'], $row['stock'], $row['id']);
+            $products[] = new ProductModel($row['name'], $row['price'], $row['stock'], $row['image'], $row['id']);
         }
         return $products;
     }
