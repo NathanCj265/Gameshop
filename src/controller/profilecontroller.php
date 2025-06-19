@@ -8,3 +8,10 @@ require_once __DIR__ . '/../view/profileview.php';
 
 $username = $_SESSION['username'];
 ProfileView::render($username);
+
+class ProfileController {
+    public static function execute() {
+        $username = $_SESSION['username'];
+        ProfileView::render($username);
+    }
+}

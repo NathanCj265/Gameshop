@@ -35,7 +35,7 @@ class LoginView {
                         <p>YOU WANT MOST GAMES IN HERE<br>
                         <span style="font-size:0.95em;">Discover the latest and greatest games, all in one place.</span>
                         </p>
-                        <button class="view-more-btn" onclick="window.location.href='gameview.php'">VIEW MORE</button>
+                        <button class="view-more-btn" onclick="window.location.href='indexcontroller.php'">VIEW MORE</button>
                     </div>
                 </div>
                 <div class="login-right">
@@ -50,15 +50,15 @@ class LoginView {
                         <input type="password" id="password" name="password" placeholder="Password" required>
                         <button type="submit">LOGIN</button>
                         <div class="form-extra-link">
-                            Don't have an account? <a href="signupview.php">Register here</a>
+                            Don't have an account? <a href="signupcontroller.php">Register here</a>
                         </div>
                     </form>
                 </div>
             </div>
             <footer>
                 <div class="footer-links">
-                    <a href="privacy.php">Privacy</a> | 
-                    <a href="terms.php">Terms</a>
+              <a href="/Gameshop/src/controller/privacycontroller.php">Privacy</a> | 
+                    <a href="/Gameshop/src/controller/termscontroller.php">Terms</a>
                 </div>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
             </footer>

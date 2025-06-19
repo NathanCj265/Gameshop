@@ -7,12 +7,12 @@ class HomeView {
         // Shuffle and limit featured products
         if ($featuredProducts && count($featuredProducts) > 0) {
             shuffle($featuredProducts);
-            $featuredProducts = array_slice($featuredProducts, 0, 4); // Show up to 4 random products
+            $featuredProducts = array_slice($featuredProducts, 0, 4); 
         }
         // Shuffle and limit featured games
         if ($featuredGames && count($featuredGames) > 0) {
             shuffle($featuredGames);
-            $featuredGames = array_slice($featuredGames, 0, 4); // Show up to 4 random games
+            $featuredGames = array_slice($featuredGames, 0, 4); 
         }
         ?>
         <!DOCTYPE html>
@@ -104,8 +104,8 @@ class HomeView {
             </main>
             <footer>
                 <div class="footer-links">
-                    <a href="privacy.php">Privacy</a> | 
-                    <a href="terms.php">Terms</a>
+                  <a href="/Gameshop/src/controller/privacycontroller.php">Privacy</a> | 
+                    <a href="/Gameshop/src/controller/termscontroller.php">Terms</a>
                 </div>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
             </footer>
