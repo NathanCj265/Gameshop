@@ -6,11 +6,12 @@ class LoginController {
     public static function execute() {
         $error = null;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'] ?? '';
+            
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password = $_POST['password'] ?? '';
+
             if (UserModel::authenticate($username, $password)) {
-                // After successful login
-                $_SESSION['username'] = $username; // Store username in session
+                $_SESSION['username'] = $username;
                 header("Location: /Gameshop/src/controller/indexcontroller.php");
                 exit;
             } else {
