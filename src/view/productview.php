@@ -29,22 +29,20 @@ class ProductView {
                       <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                       <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                     <?php endif; ?>
-                        <li class="cart-nav">
+                        <li style="float:right;position:relative;" class="cart-container">
+                           
                             <a href="#" id="cart-toggle" style="font-weight:bold;">
                                 🛒 Cart <span id="cart-count" style="color:#ffd700;">0</span>
                             </a>
+                            <div id="cart" class="cart cart-dropdown">
+                                <h2>Cart</h2>
+                                <ul id="cart-items"></ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <!-- Cart dropdown (hidden by default, shown on click) -->
-            <div id="cart" class="cart cart-dropdown" style="display:none;">
-                <h2>Cart</h2>
-                <ul id="cart-items"></ul>
-            </div>
-            <div class="header-image">
-                <img src="/Gameshop/images/Gameshop.png" alt="GameShop Logo" class="logo">
-            </div>
+           
             <main class="content products-content">
                 <h1>Products</h1>
                 <div class="product-list">

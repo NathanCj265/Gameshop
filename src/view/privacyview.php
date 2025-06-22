@@ -1,7 +1,7 @@
 <?php
 
 class PrivacyView {
-    public static function render() {
+    public static function render($username = null) {
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -30,6 +30,18 @@ class PrivacyView {
                       <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                       <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                     <?php endif; ?>
+                    <li class="cart-nav" style="position:relative;">
+    
+    <a href="#" id="cart-toggle" style="font-weight:bold;">
+        
+        Cart <span id="cart-count" style="color:#ffd700;">0</span>
+    </a>
+    
+    <div id="cart" class="cart cart-dropdown">
+        <h2>Cart</h2>
+        <ul id="cart-items"></ul>
+    </div>
+</li>
                     </ul>
                 </div>
             </nav>

@@ -30,19 +30,19 @@ class GameView {
                             <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                             <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                         <?php endif; ?>
-                        <li class="cart-nav">
+                        <li class="cart-nav" style="position:relative;">
+                           
                             <a href="#" id="cart-toggle" style="font-weight:bold;">
                                 🛒 Cart <span id="cart-count" style="color:#ffd700;">0</span>
                             </a>
+                            <div id="cart" class="cart cart-dropdown">
+                                <h2>Cart</h2>
+                                <ul id="cart-items"></ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <!-- Cart dropdown (hidden by default, shown on click) -->
-            <div id="cart" class="cart cart-dropdown" style="display:none;">
-                <h2>Cart</h2>
-                <ul id="cart-items"></ul>
-            </div>
             <main class="content games-content">
                 <h1>Games</h1>
                 <h2>Available Games</h2>
@@ -55,6 +55,7 @@ class GameView {
                         echo '<div class="game-title">' . htmlspecialchars($game->getTitle()) . '</div>';
                         echo '<div class="game-meta">Platform: ' . htmlspecialchars($game->getPlatform()) . '</div>';
                         echo '<div class="game-meta">Genre: ' . htmlspecialchars($game->getGenre()) . '</div>';
+                        echo '<div class="game-meta">Price: &euro;' . htmlspecialchars($game->getPrice()) . '</div>';
                         echo '<button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($game->getTitle()) . '\')">Buy</button>';
                         echo '</div>';
                     }

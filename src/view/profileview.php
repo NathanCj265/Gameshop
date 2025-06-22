@@ -20,7 +20,7 @@ class ProfileView {
             <meta charset="UTF-8">
             <title>Profile | GameShop</title>
             <link rel="stylesheet" href="/Gameshop/src/view/style.css">
-            <!-- Font Awesome for icons -->
+           
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         </head>
         <body>

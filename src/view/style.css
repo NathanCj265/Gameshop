@@ -1050,10 +1050,13 @@ a:hover {
     color: #232946;
 }
 
+.cart-container {
+    position: relative;
+}
 .cart-dropdown {
     position: absolute;
-    top: 70px; /* adjust based on your navbar height */
-    right: 40px;
+    top: 48px; /* adjust based on your navbar height */
+    right: 0;
     z-index: 200;
     width: 260px;
     background: #232946;
@@ -1066,8 +1069,54 @@ a:hover {
 .cart-dropdown.active {
     display: block;
 }
-.cart-nav {
-    float: right;
+.cart-container:hover .cart-dropdown,
+.cart-dropdown:hover {
+    display: block;
+}
+
+.cart-dropdown {
+    position: absolute;
+    top: 70px; /* adjust if needed */
+    right: 40px;
+    z-index: 200;
+    width: 260px;
+    background: #232946;
+    color: #fff;
+    padding: 16px 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #000a;
+    display: none;
+    transition: opacity 0.2s;
+}
+.cart-nav:hover + .cart-dropdown,
+.cart-dropdown:hover {
+    display: block;
+}
+.cart-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.cart-dropdown li {
+    margin-bottom: 8px;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-dropdown button {
+    background: #ff4b5c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 8px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+}
+.cart-dropdown button:hover {
+    background: #eebf3f;
+    color: #232946;
 }
 
 @media (max-width: 900px) {

@@ -1,5 +1,5 @@
 <?php
-// filepath: c:\xampp\htdocs\Gameshop\src\model\loginmodel.php
+
 
 require_once __DIR__ . '/dbconnect.php';
 require_once __DIR__ . '/orminterface.php';
@@ -63,7 +63,7 @@ class LoginModel implements ORMInterface {
         return $users;
     }
 
-    // This is the important method for your login!
+   
     public static function authenticate($username, $password) {
         include __DIR__ . '/dbconnect.php';
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username=?");

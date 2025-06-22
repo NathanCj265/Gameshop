@@ -4,15 +4,14 @@ ini_set('display_errors', 1);
 
 class HomeView {
     public static function render($featuredProducts = [], $featuredGames = [], $username = null) {
-        // Shuffle and limit featured products
+        // Shuffle and limit to 4 products/games
         if ($featuredProducts && count($featuredProducts) > 0) {
             shuffle($featuredProducts);
-            $featuredProducts = array_slice($featuredProducts, 0, 4); 
+            $featuredProducts = array_slice($featuredProducts, 0, 4);
         }
-        // Shuffle and limit featured games
         if ($featuredGames && count($featuredGames) > 0) {
             shuffle($featuredGames);
-            $featuredGames = array_slice($featuredGames, 0, 4); 
+            $featuredGames = array_slice($featuredGames, 0, 4);
         }
         ?>
         <!DOCTYPE html>
@@ -21,7 +20,7 @@ class HomeView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Home | GameShop</title>
-        <link rel="stylesheet" href="/Gameshop/src/view/style.css">
+            <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
         <body>
             <nav>
@@ -42,6 +41,15 @@ class HomeView {
                       <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                       <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                     <?php endif; ?>
+                        <li class="cart-nav" style="position:relative;">
+                            <a href="#" id="cart-toggle" style="font-weight:bold;">
+                                🛒 Cart <span id="cart-count" style="color:#ffd700;">0</span>
+                            </a>
+                            <div id="cart" class="cart cart-dropdown">
+                                <h2>Cart</h2>
+                                <ul id="cart-items"></ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -59,15 +67,11 @@ class HomeView {
                 } else {
                     foreach ($featuredProducts as $product) {
                         echo '<div class="glow-card">';
-                        if (!empty($product->image)) {
-                            echo '<img src="' . htmlspecialchars($product->image) . '" alt="' . htmlspecialchars($product->name) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
-                        }
-                        echo '<strong style="font-size:1.1em;color:#ffd700;">' . htmlspecialchars($product->name) . '</strong><br>';
-                        if (isset($product->category)) {
-                            echo '<span style="color:#aaa;">Category: ' . htmlspecialchars($product->category) . '</span><br>';
-                        }
-                        echo '<span style="color:#00ff99;font-weight:bold;">Price: $' . number_format($product->price, 2) . '</span><br>';
-                        echo '<span style="font-size:0.95em;">' . htmlspecialchars($product->description ?? '') . '</span>';
+                        // Always use the correct relative path to your images folder
+                        echo '<img src="/Gameshop/images/products/' . htmlspecialchars($product->getImage()) . '" alt="' . htmlspecialchars($product->getName()) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
+                        echo '<strong style="font-size:1.1em;color:#ffd700;">' . htmlspecialchars($product->getName()) . '</strong><br>';
+                        echo '<span style="color:#00ff99;font-weight:bold;">Price: $' . number_format($product->getPrice(), 2) . '</span><br>';
+                        echo '<br><button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($product->getName()) . '\')">Buy</button>';
                         echo '</div>';
                     }
                 }
@@ -82,20 +86,10 @@ class HomeView {
                 } else {
                     foreach ($featuredGames as $game) {
                         echo '<div class="glow-card">';
-                        if (!empty($game->image)) {
-                            echo '<img src="' . htmlspecialchars($game->image) . '" alt="' . htmlspecialchars($game->name) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
-                        }
-                        echo '<strong style="font-size:1.1em;color:#ffd700;">' . htmlspecialchars($game->name) . '</strong><br>';
-                        if (isset($game->platform)) {
-                            echo '<span style="color:#aaa;">Platform: ' . htmlspecialchars($game->platform) . '</span><br>';
-                        }
-                        if (isset($game->genre)) {
-                            echo '<span style="color:#aaa;">Genre: ' . htmlspecialchars($game->genre) . '</span><br>';
-                        }
-                        if (isset($game->price)) {
-                            echo '<span style="color:#00ff99;font-weight:bold;">Price: $' . number_format($game->price, 2) . '</span><br>';
-                        }
-                        echo '<span style="font-size:0.95em;">' . htmlspecialchars($game->description ?? '') . '</span>';
+                        echo '<img src="/Gameshop/images/games/' . htmlspecialchars($game->getImage()) . '" alt="' . htmlspecialchars($game->getTitle()) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
+                        echo '<strong style="font-size:1.1em;color:#ffd700;">' . htmlspecialchars($game->getTitle()) . '</strong><br>';
+                        echo '<span style="color:#00ff99;font-weight:bold;">Price: $' . number_format($game->getPrice(), 2) . '</span><br>';
+                        echo '<br><button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($game->getTitle()) . '\')">Buy</button>';
                         echo '</div>';
                     }
                 }
@@ -109,75 +103,10 @@ class HomeView {
                 </div>
                 <p>&copy; 2025 GameShop. All rights reserved.</p>
             </footer>
+            <script src="/Gameshop/src/view/cart.js"></script>
         </body>
         </html>
         <?php
     }
 }
 
-// Example usage with sample data:
-$featuredProducts = [
-    (object)[
-        'name' => 'Xbox Wireless Controller',
-        'image' => '/Gameshop/images/xbox-controller.jpg',
-        'category' => 'Accessories',
-        'price' => 59.99,
-        'description' => 'Experience the modernized design of the Xbox Wireless Controller.'
-    ],
-    (object)[
-        'name' => 'PlayStation 5 Console',
-        'image' => '/Gameshop/images/ps5.jpg',
-        'category' => 'Consoles',
-        'price' => 499.99,
-        'description' => 'The PS5 console unleashes new gaming possibilities you never anticipated.'
-    ],
-    (object)[
-        'name' => 'Nintendo Switch',
-        'image' => '/Gameshop/images/switch.jpg',
-        'category' => 'Consoles',
-        'price' => 299.99,
-        'description' => 'Nintendo Switch is designed to fit your life, transforming from home console to portable system in a snap.'
-    ],
-    (object)[
-        'name' => 'Logitech G502 Mouse',
-        'image' => '/Gameshop/images/g502.jpg',
-        'category' => 'Accessories',
-        'price' => 49.99,
-        'description' => 'High performance gaming mouse with customizable weights and lighting.'
-    ]
-];
-
-$featuredGames = [
-    (object)[
-        'name' => "Marvel's Spider-Man 2",
-        'image' => '/Gameshop/images/spiderman2.jpg',
-        'platform' => 'PS5',
-        'genre' => 'Action-Adventure',
-        'price' => 59.99,
-        'description' => 'Swing, jump and utilize the new Web Wings to travel across Marvel’s New York.'
-    ],
-    (object)[
-        'name' => 'God of War: Ragnarok',
-        'image' => '/Gameshop/images/gowragnarok.jpg',
-        'platform' => 'PS5',
-        'genre' => 'Action',
-        'price' => 59.99,
-        'description' => 'Embark on an epic and heartfelt journey as Kratos and Atreus struggle with holding on and letting go.'
-    ],
-    (object)[
-        'name' => 'The Legend of Zelda: Tears of the Kingdom',
-        'image' => '/Gameshop/images/zelda-totk.jpg',
-        'platform' => 'Nintendo Switch',
-        'genre' => 'Adventure',
-        'price' => 59.99,
-        'description' => 'An epic adventure across the land and skies of Hyrule awaits in The Legend of Zelda: Tears of the Kingdom.'
-    ],
-    (object)[
-        'name' => 'Forza Horizon 5',
-        'image' => '/Gameshop/images/forza5.jpg',
-        'platform' => 'Xbox',
-        'genre' => 'Racing',
-        'price' => 59.99,
-        'description' => 'Your Ultimate Horizon Adventure awaits! Explore the vibrant and ever-evolving open world landscapes of Mexico.'
-    ]
-];

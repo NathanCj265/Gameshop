@@ -9,14 +9,16 @@ class GameModel implements ORMInterface {
     private $genre;
     private $platform;
     private $image; 
+    private $price;
     private static $pdo;
 
-    public function __construct($title, $genre, $platform, $image = null, $id = null) {
+    public function __construct($title, $genre, $platform, $image = null, $id = null, $price = 0.00) {
         $this->title = $title;
         $this->genre = $genre;
         $this->platform = $platform;
         $this->image = $image;
         $this->id = $id;
+        $this->price = $price;
         if (!self::$pdo) {
             include __DIR__ . '/dbconnect.php';
             self::$pdo = $pdo;
@@ -25,11 +27,11 @@ class GameModel implements ORMInterface {
 
     public function save() {
         if ($this->id) {
-            $stmt = self::$pdo->prepare("UPDATE game SET title=?, genre=?, platform=?, image=? WHERE id=?");
-            $stmt->execute([$this->title, $this->genre, $this->platform, $this->image, $this->id]);
+            $stmt = self::$pdo->prepare("UPDATE game SET title=?, genre=?, platform=?, image=?, price=? WHERE id=?");
+            $stmt->execute([$this->title, $this->genre, $this->platform, $this->image, $this->price, $this->id]);
         } else {
-            $stmt = self::$pdo->prepare("INSERT INTO game (title, genre, platform, image) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$this->title, $this->genre, $this->platform, $this->image]);
+            $stmt = self::$pdo->prepare("INSERT INTO game (title, genre, platform, image, price) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$this->title, $this->genre, $this->platform, $this->image, $this->price]);
             $this->id = self::$pdo->lastInsertId();
         }
     }
@@ -61,13 +63,17 @@ class GameModel implements ORMInterface {
         return $this->image;
     }
 
+    public function getPrice() {
+        return $this->price;
+    }
+
     public static function findByID($id) {
         include __DIR__ . '/dbconnect.php';
         $stmt = $pdo->prepare("SELECT * FROM game WHERE id=?");
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         if ($row) {
-            return new GameModel($row['title'], $row['genre'], $row['platform'], $row['image'], $row['id']);
+            return new GameModel($row['title'], $row['genre'], $row['platform'], $row['image'], $row['id'], $row['price']);
         }
         return null;
     }
@@ -77,7 +83,7 @@ class GameModel implements ORMInterface {
         $stmt = $pdo->query("SELECT * FROM game");
         $games = [];
         while ($row = $stmt->fetch()) {
-            $games[] = new GameModel($row['title'], $row['genre'], $row['platform'], $row['image'], $row['id']);
+            $games[] = new GameModel($row['title'], $row['genre'], $row['platform'], $row['image'], $row['id'], $row['price']);
         }
         return $games;
     }

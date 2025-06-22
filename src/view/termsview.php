@@ -1,7 +1,7 @@
 <?php
 
 class TermsView {
-    public static function render() {
+    public static function render($username = null) { 
         ?>
         <!DOCTYPE html>
         <html lang="en">

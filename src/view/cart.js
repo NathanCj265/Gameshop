@@ -14,8 +14,8 @@ function renderCart() {
         li.textContent = item;
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
-        removeBtn.style.marginLeft = '10px';
-        removeBtn.onclick = () => {
+        removeBtn.onclick = (e) => {
+            e.stopPropagation();
             cart.splice(idx, 1);
             renderCart();
         };
@@ -25,7 +25,6 @@ function renderCart() {
     if (cartCount) cartCount.textContent = cart.length;
 }
 
-// Toggle cart dropdown
 document.addEventListener('DOMContentLoaded', function() {
     const cartToggle = document.getElementById('cart-toggle');
     const cartDiv = document.getElementById('cart');
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             cartDiv.classList.toggle('active');
         });
-        // Optional: Hide cart when clicking outside
+    
         document.addEventListener('click', function(e) {
             if (!cartDiv.contains(e.target) && !cartToggle.contains(e.target)) {
                 cartDiv.classList.remove('active');
