@@ -153,4 +153,25 @@ class UserModel implements ORMInterface {
             $_SESSION['username'] = $user['username'];
         }
     }
+
+    // Role check helpers
+    public function isAdmin() {
+        return strtolower($this->role) === 'admin';
+    }
+
+    public function isMember() {
+        return strtolower($this->role) === 'member';
+    }
+
+    // Optional: Promote user to admin
+    public function promoteToAdmin() {
+        $this->role = 'admin';
+        $this->save();
+    }
+
+    // Optional: Demote user to member
+    public function demoteToMember() {
+        $this->role = 'Member';
+        $this->save();
+    }
 }

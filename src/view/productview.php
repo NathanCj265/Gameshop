@@ -54,6 +54,7 @@ class ProductView {
                         echo '<div class="product-title">' . htmlspecialchars($product->getName()) . '</div>';
                         echo '<div class="product-meta">Price: &euro;' . htmlspecialchars($product->getPrice()) . '</div>';
                         echo '<div class="product-meta">Stock: ' . htmlspecialchars($product->getStock()) . '</div>';
+                        echo '<div class="product-description">' . htmlspecialchars($product->getDescription()) . '</div>'; // <-- Add this line
                         echo '<button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($product->getName()) . '\')">Buy</button>';
                         echo '</div>';
                     }

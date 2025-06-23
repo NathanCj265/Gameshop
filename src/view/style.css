@@ -141,6 +141,12 @@ h3 {
     border: 2px solid #eebf3f33;
     background: #181c29;
 }
+.product-description {
+    color: #ccc;
+    font-size: 0.95em;
+    margin: 8px 0;
+    min-height: 40px;
+}
 @media (max-width: 900px) {
     .product-list, .game-list { flex-direction: column; align-items: center; }
     .product-card, .game-card { width: 95%; }
@@ -1124,5 +1130,104 @@ a:hover {
         flex-direction: column;
         align-items: center;
         gap: 24px;
+    }
+}
+
+/* --- Admin Panel Table Styles --- */
+.admin-panel-table {
+    width: 90%;
+    margin: 32px auto 48px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: linear-gradient(120deg, #232946 60%, #181c29 100%);
+    border-radius: 18px;
+    box-shadow: 0 6px 24px #000a, 0 1.5px 0 #eebf3f;
+    overflow: hidden;
+}
+
+.admin-panel-table th, .admin-panel-table td {
+    padding: 18px 18px;
+    text-align: left;
+    font-size: 1.08em;
+}
+
+.admin-panel-table th {
+    background: #232946;
+    color: #eebf3f;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.13em;
+    border-bottom: 2px solid #eebf3f55;
+}
+
+.admin-panel-table tr {
+    transition: background 0.15s;
+}
+
+.admin-panel-table tr:nth-child(even) {
+    background: #20243a;
+}
+
+.admin-panel-table tr:hover {
+    background: #2b3150;
+}
+
+.admin-panel-table td {
+    color: #e0e6f7;
+    border-bottom: 1px solid #eebf3f22;
+}
+
+.admin-panel-table form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    border: none;
+}
+
+.admin-panel-table input[type="number"] {
+    width: 70px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #a1a6c8;
+    background: #181c29;
+    color: #e0e6f7;
+    font-size: 1em;
+    margin-right: 6px;
+}
+
+.admin-panel-table input[type="number"]:focus {
+    border: 2px solid #eebf3f;
+    background: #232946;
+}
+
+.admin-panel-table button {
+    background: #eebf3f;
+    color: #232946;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 0.03em;
+}
+
+.admin-panel-table button:hover {
+    background: #3be8b0;
+    color: #181c29;
+}
+
+@media (max-width: 700px) {
+    .admin-panel-table, .admin-panel-table th, .admin-panel-table td {
+        font-size: 0.98em;
+        padding: 10px 6px;
+    }
+    .admin-panel-table {
+        width: 99%;
     }
 }

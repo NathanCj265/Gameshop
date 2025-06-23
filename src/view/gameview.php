@@ -56,6 +56,7 @@ class GameView {
                         echo '<div class="game-meta">Platform: ' . htmlspecialchars($game->getPlatform()) . '</div>';
                         echo '<div class="game-meta">Genre: ' . htmlspecialchars($game->getGenre()) . '</div>';
                         echo '<div class="game-meta">Price: &euro;' . htmlspecialchars($game->getPrice()) . '</div>';
+                        echo '<div class="game-meta">Stock: ' . (int)$game->getStock() . '</div>';
                         echo '<button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($game->getTitle()) . '\')">Buy</button>';
                         echo '</div>';
                     }

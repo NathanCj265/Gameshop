@@ -67,10 +67,12 @@ class HomeView {
                 } else {
                     foreach ($featuredProducts as $product) {
                         echo '<div class="glow-card">';
-                        // Always use the correct relative path to your images folder
                         echo '<img src="/Gameshop/images/products/' . htmlspecialchars($product->getImage()) . '" alt="' . htmlspecialchars($product->getName()) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
                         echo '<strong style="font-size:1.1em;color:#ffd700;">' . htmlspecialchars($product->getName()) . '</strong><br>';
                         echo '<span style="color:#00ff99;font-weight:bold;">Price: $' . number_format($product->getPrice(), 2) . '</span><br>';
+                        echo '<span style="color:#3be8b0;font-size:1em;">Stock: ' . (int)$product->getStock() . '</span><br>';
+                        // Add description here
+                        echo '<div class="product-description" style="color:#00ff99;font-size:0.95em;margin:8px 0;min-height:40px;">' . htmlspecialchars($product->getDescription()) . '</div>';
                         echo '<br><button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($product->getName()) . '\')">Buy</button>';
                         echo '</div>';
                     }
@@ -88,7 +90,10 @@ class HomeView {
                         echo '<div class="glow-card">';
                         echo '<img src="/Gameshop/images/games/' . htmlspecialchars($game->getImage()) . '" alt="' . htmlspecialchars($game->getTitle()) . '" style="width:100%;height:140px;object-fit:cover;border-radius:8px 8px 0 0;margin-bottom:10px;">';
                         echo '<strong style="font-size:1.1em;color:#ffd700;">' . htmlspecialchars($game->getTitle()) . '</strong><br>';
-                        echo '<span style="color:#00ff99;font-weight:bold;">Price: $' . number_format($game->getPrice(), 2) . '</span><br>';
+                        echo '<span style="color:#3be8b0;">Platform: ' . htmlspecialchars($game->getPlatform()) . '</span><br>';
+                        echo '<span style="color:#3be8b0;">Genre: ' . htmlspecialchars($game->getGenre()) . '</span><br>';
+                        echo '<span style="color:#00ff99;font-weight:bold;">Price: €' . number_format($game->getPrice(), 2) . '</span><br>';
+                        echo '<span style="color:#3be8b0;font-size:1em;">Stock: ' . (int)$game->getStock() . '</span><br>';
                         echo '<br><button class="buy-btn" onclick="addToCart(\'' . htmlspecialchars($game->getTitle()) . '\')">Buy</button>';
                         echo '</div>';
                     }
