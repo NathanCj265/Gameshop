@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . '/BaseView.php';
 
-class SignupView{
+class SignupView extends BaseView {
     public static function render($error = null) {
         ?>
         <!DOCTYPE html>

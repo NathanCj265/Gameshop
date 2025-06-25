@@ -1,6 +1,6 @@
 <?php
-
-class AdminView {
+require_once __DIR__ . '/BaseView.php';
+class AdminView extends BaseView  {
     public static function render($username, $products, $games) {
         ?>
         <!DOCTYPE html>

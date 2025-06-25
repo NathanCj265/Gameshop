@@ -1,6 +1,6 @@
 <?php
-
-class ProductView {
+require_once __DIR__ . '/BaseView.php';
+class ProductView  extends BaseView {
     public static function render($products = null, $username = null) {
         ?>
         <!DOCTYPE html>

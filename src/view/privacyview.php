@@ -1,6 +1,6 @@
 <?php
-
-class PrivacyView {
+require_once __DIR__ . '/BaseView.php';
+class PrivacyView  extends BaseView {
     public static function render($username = null) {
         ?>
         <!DOCTYPE html>

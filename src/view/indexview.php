@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-class HomeView {
+require_once __DIR__ . '/BaseView.php';
+class HomeView extends BaseView  {
     public static function render($featuredProducts = [], $featuredGames = [], $username = null) {
         // Shuffle and limit to 4 products/games
         if ($featuredProducts && count($featuredProducts) > 0) {

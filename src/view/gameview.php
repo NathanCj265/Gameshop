@@ -1,6 +1,6 @@
 <?php
-
-class GameView {
+require_once __DIR__ . '/BaseView.php';
+class GameView  extends BaseView  {
     public static function render($games = null, $username = null) { 
         ?>
         <!DOCTYPE html>

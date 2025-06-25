@@ -1,7 +1,7 @@
 <?php
 
-    
-class LoginView {
+require_once __DIR__ . '/BaseView.php';
+class LoginView  extends BaseView {
     public static function render($error = null) {
         ?>
         <!DOCTYPE html>

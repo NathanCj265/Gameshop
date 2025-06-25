@@ -1,6 +1,6 @@
 <?php
-
-class AboutView {
+require_once __DIR__ . '/BaseView.php';
+class AboutView  extends BaseView {
     public static function render($username = null) {
         ?>
         <!DOCTYPE html>

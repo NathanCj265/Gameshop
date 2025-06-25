@@ -1,6 +1,6 @@
 <?php
-
-class TermsView {
+require_once __DIR__ . '/BaseView.php';
+class TermsView extends BaseView  {
     public static function render($username = null) { 
         ?>
         <!DOCTYPE html>

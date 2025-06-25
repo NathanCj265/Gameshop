@@ -1,6 +1,6 @@
 <?php
-
-class ProfileView {
+require_once __DIR__ . '/BaseView.php';
+class ProfileView extends BaseView  {
     
     public static function render($user) {
         ?>
