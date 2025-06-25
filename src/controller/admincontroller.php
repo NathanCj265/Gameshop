@@ -14,12 +14,12 @@ class AdminController {
 
         $user = UserModel::findByUsername($_SESSION['username']);
         if (!$user || $user->getRole() !== 'admin') {
-            // Not an admin, redirect to home or show error
+         
             header("Location: /Gameshop/src/controller/indexcontroller.php");
             exit;
         }
 
-        // Handle stock update POST
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $type = $_POST['type'] ?? '';
             $id = (int)($_POST['id'] ?? 0);
@@ -38,16 +38,16 @@ class AdminController {
                     $game->save();
                 }
             }
-            // Redirect to avoid form resubmission
+        
             header("Location: /Gameshop/src/controller/admincontroller.php");
             exit;
         }
 
-        // Fetch all products and games
+        
         $products = ProductModel::findAll();
         $games = GameModel::findAll();
 
-        // Render the admin view
+        
         AdminView::render($user->getUsername(), $products, $games);
     }
 }

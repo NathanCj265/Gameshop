@@ -29,6 +29,13 @@ class AboutView {
                             <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($username) ?></li>
                             <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                             <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
+                            <?php
+                            require_once __DIR__ . '/../model/usermodel.php';
+                            $user = isset($username) ? UserModel::findByUsername($username) : null;
+                            if ($user && $user->getRole() === 'admin') {
+                                echo '<li style="float:right;"><a href="/Gameshop/src/controller/admincontroller.php" style="color:#00ff00;font-weight:bold;">Admin Panel</a></li>';
+                            }
+                            ?>
                         <?php endif; ?>
                     </ul>
                 </div>

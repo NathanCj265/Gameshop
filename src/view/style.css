@@ -1222,6 +1222,24 @@ a:hover {
     color: #181c29;
 }
 
+.back-home-btn {
+    display: inline-block;
+    margin: 20px auto 30px auto;
+    padding: 10px 24px;
+    background: #ffd700;
+    color: #222;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 0.2s;
+    text-align: center;
+}
+.back-home-btn:hover {
+    background: #ffe066;
+    color: #111;
+}
+
 @media (max-width: 700px) {
     .admin-panel-table, .admin-panel-table th, .admin-panel-table td {
         font-size: 0.98em;

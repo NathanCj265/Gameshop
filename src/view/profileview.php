@@ -23,7 +23,7 @@ class ProfileView {
                         <li><a href="/Gameshop/src/controller/productcontroller.php">Products</a></li>
                         <li><a href="/Gameshop/src/controller/gamecontroller.php">Games</a></li>
                         <li><a href="/Gameshop/src/controller/aboutcontroller.php">About Us</a></li>
-                        <li><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
+                        <li style="float:right;"><a href="/Gameshop/src/controller/profilecontroller.php" style="color:#ffd700;font-weight:bold;">Profile</a></li>
                         <li style="color:#00ff99;font-weight:bold;padding:0 10px;">You are logged in as <?= htmlspecialchars($user->getUsername()) ?></li>
                         <li><a href="/Gameshop/src/controller/logoutcontroller.php">Sign Out</a></li>
                     </ul>

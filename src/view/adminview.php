@@ -11,7 +11,8 @@ class AdminView {
             <link rel="stylesheet" href="/Gameshop/src/view/style.css">
         </head>
         <body>
-            <h1>Admin Panel</h1>
+            <h1 class="glow-title" style="text-align:center;margin-top:30px;">Admin Panel</h1>
+            <a href="/Gameshop/src/controller/indexcontroller.php" class="back-home-btn">← Back to Homepage</a>
             <p>Welcome, <?= htmlspecialchars($username) ?>! You have admin access.</p>
 
             <h2>Manage Products</h2>

@@ -20,7 +20,6 @@ class UserModel implements ORMInterface {
         $this->email = $email;
         $this->password_hash = $password_hash;
         $this->id = $id;
-        // Ensure role is never null, default to 'Member'
         $this->role = $role ?? 'Member';
         $this->age = $age;
         $this->country = $country;
@@ -33,7 +32,7 @@ class UserModel implements ORMInterface {
         }
     }
 
-    // Save new user or update existing
+    
     public function save() {
         if ($this->id) {
             $stmt = self::$pdo->prepare("UPDATE users SET username=?, email=?, password_hash=?, role=?, age=?, country=?, address=?, phone=?, position=? WHERE id=?");
@@ -42,13 +41,13 @@ class UserModel implements ORMInterface {
                 $this->age, $this->country, $this->address, $this->phone, $this->position, $this->id
             ]);
         } else {
-            // Check for duplicate username before insert
+            
             $checkStmt = self::$pdo->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
             $checkStmt->execute([$this->username]);
             if ($checkStmt->fetchColumn() > 0) {
                 throw new Exception("Username already exists.");
             }
-            // Ensure role is never null, default to 'Member'
+   
             $role = $this->role ?? 'Member';
             $stmt = self::$pdo->prepare("INSERT INTO users (username, email, password_hash, role, age, country, address, phone, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([
@@ -126,7 +125,7 @@ class UserModel implements ORMInterface {
         return null;
     }
 
-    // Login: Authenticate user and set session
+    
     public static function authenticate($username, $password) {
         include __DIR__ . '/dbconnect.php';
         session_start();
@@ -141,7 +140,7 @@ class UserModel implements ORMInterface {
         return false;
     }
 
-    // Signup: Set session after registration
+    
     public static function setSession($username) {
         include __DIR__ . '/dbconnect.php';
         session_start();
@@ -154,7 +153,7 @@ class UserModel implements ORMInterface {
         }
     }
 
-    // Role check helpers
+    
     public function isAdmin() {
         return strtolower($this->role) === 'admin';
     }
@@ -163,13 +162,13 @@ class UserModel implements ORMInterface {
         return strtolower($this->role) === 'member';
     }
 
-    // Optional: Promote user to admin
+  
     public function promoteToAdmin() {
         $this->role = 'admin';
         $this->save();
     }
 
-    // Optional: Demote user to member
+    
     public function demoteToMember() {
         $this->role = 'Member';
         $this->save();
